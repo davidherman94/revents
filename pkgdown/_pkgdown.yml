@@ -1,0 +1,37 @@
+url: ~
+template:
+  bootstrap: 5
+page-navigation: true
+
+#search: false
+
+authors:
+  Quinten Health:
+    href: https://www.quinten-health.com/
+
+navbar:
+  right:
+    - icon: fa-github
+      href: https://gitlab.par.quinten.io/d.herman/revents
+  left:
+    - icon: fa-home fa-lg
+      href: index.html
+    - text: "Vignettes"
+      href: articles/index.html
+    # - text: "Functions" ## functions were removed from the navbar
+    #   href: reference/index.html
+
+articles:
+  - title: "Application of recurrent event methods"
+    desc: >
+      These vignettes provide an introduction to apply recurrent
+      event models in chronic diseases with **revents** package.
+    contents:
+      -   revents
+      -   simulated_data
+      -   descriptive_analyses
+      -   database_layout
+      -   count_based_models
+      -   conditional_models
+      -   marginal_models
+      -   event_specific_estimates

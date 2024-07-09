@@ -1,0 +1,18 @@
+citHeader("To cite the thesis or revents package in publications use:")
+
+bibentry(
+  bibtype  = "MastersThesis",
+  title    = "Analyzing Recurrent Events in Multiple Sclerosis: A Review of Statistical Models with Application to MSOAC database",
+  author   = person(c("Herman", "D."), email = "d.herman@quinten-health.com"),
+  school   = "EHESP",
+  year     = 2024,
+  institution = "Quinten Health - Biostats Team"
+)
+
+bibentry(
+  bibtype = "Misc",
+  title = "Application of recurrent events methods in non-terminal events",
+  author = c(person("David", "Herman"), person("Quentin", "Pilard")),
+  year = 2024,
+  note = "R package version 2024.04.0"
+)

@@ -1,0 +1,128 @@
+---
+title: "06. Conditional models in recurrent events"
+author: "David Herman"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{06. Conditional models in recurrent events}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+suppressWarnings({
+  suppressMessages({
+library(survival)
+library(broom)
+library(dplyr)
+library(frailtyEM)
+  })
+})
+```
+
+```{r echo=TRUE}
+# Load data layout corresponding to the third layout
+file_path_data_csv <- "C:/Users/david/revents/inst/data_layout_1.csv"
+
+data_layout_1 <- read.csv(file_path_data_csv)
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+# set scientific notation to FALSE
+options(scipen = 999)
+```
+
+#### **Cox proportional hazard model (CoxPH)**
+
+In time to first event analyses (i.e. classical cox regression), the risk set is only restricted to first event of relapses. Thus, when working with recurrent event data, this risk set is specified by using the subset of SEVENT == 1.
+
+```{r echo=TRUE}
+cox.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ DISEASE_COURSE + AGE + SEX 
+                      + RACE + TIME_SINCE_DIAGNOSIS, ties = "breslow", 
+                      data = subset(data_layout_1, SEVENT == 1))
+
+cox.relapses
+```
+
+Here it can be seen that the CoxPH model gives an decreasing risk of relapses of 40% in the SPMS group compared with the RRMS group. It is important to consider that this model is ignoring all the other events that precede the 1st events.
+
+In order to account for them, we can use recurrent events models:
+
+#### **ANDERSEN-GILL (AG) model**
+
+This is a classical cox extension model for recurrent event data which assumes that events are independent and that the hazard ratio is constant over time.
+
+```{r echo=TRUE}
+ag.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ DISEASE_COURSE + AGE +
+                       SEX + RACE + TIME_SINCE_DIAGNOSIS, data = data_layout_1)
+
+ag.relapses %>% tidy(exp = TRUE, conf.int = TRUE)
+```
+
+Adjusting for covariates (in this case there are no time-dependent covariates) and considering all events, the AG model shows that the risk of relapse in the SPMS group is 44% lower than in the RRMS group.
+
+*It is important to mention that the AG model can also be fitted with a robust = TRUE to take into account correlations among the events and provides robust standard errors (not applied in this example).*
+
+#### **PWP TT (or CT) model (overall effect)**
+
+The PWP model turns into a useful model when dependency between events become relevant to account. This model add an *strata term* to the model, which allows to account for the dependency between events while obtaining the overall effect.
+
+```{r echo=TRUE}
+pwp.tt.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ DISEASE_COURSE + 
+                           AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS + 
+                           strata(STATUS), data = data_layout_1)
+
+pwp.tt.relapses
+```
+
+When analyses are performed based on restricted risk sets (the risk set only involves those with the same number of previous events) with a calendar time scale, the PWP gives a HR:0.57 for the SPMS group compared with the RRMS group.
+
+#### **PWP GT model (overall effect)**
+
+The PWP model can also be used to account for inter-event dependence when the time scale is the gap time scale. This model is useful when the time between events is of interest and there is a renewal after each event (i.e. the participant returns to the previous state as, for example, in diseases where the community does not develop after the first event).
+
+```{r echo=TRUE}
+pwp.gt.relapses <- coxph(Surv(TGAP, STATUS) ~ DISEASE_COURSE + AGE + SEX
+                         + RACE + TIME_SINCE_DIAGNOSIS +
+                           strata(STATUS), data = data_layout_1)
+
+pwp.gt.relapses
+```
+
+When gap time scale is used, the PWP model gives a HR:0.56 for the SPMS group compared with the RRMS group.
+
+#### **Frailty model**
+
+The frailty model, introduces a random covariate or *frailty term* into the model that induces dependence among the recurrent event times.
+
+```{r echo=TRUE}
+frailty.relapses <- coxph(Surv(TSTOP, STATUS) ~ DISEASE_COURSE + AGE + SEX
+                          + RACE + TIME_SINCE_DIAGNOSIS + frailty(ID),
+                          data = data_layout_1)
+
+tidy(frailty.relapses, exp = TRUE, conf.int = TRUE)
+```
+
+Conditional on the unmeasured heterogeneity and covariates, the frailty model indicates that the SPMS group had a reducing risk of 23% than the RRMS (HR: 0.77; 95% CI: 0.71, 0.83).
+
+In order to verify if the use of frailty models is justified in our study, it is possible to use the *emfrail* function from *frailtyEM* package for getting the frailty variance or Kendall's tau. A variance close to 0 means no heterogeneity between patients.
+
+```{r echo=TRUE}
+frailty_var <- emfrail(Surv(TSTOP, STATUS) ~ cluster(ID) + DISEASE_COURSE
+                       + AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS, 
+                       data = data_layout_1) 
+
+summary(frailty_var)
+```
+
+In our example, there is no heterogeneity, so the use of frailty models would not be justified. The differences detected in the frailty model estimates with other conditional models may be due to model assumptions rather than heterogeneity.

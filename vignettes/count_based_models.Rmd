@@ -1,0 +1,99 @@
+---
+title: "05. Count-based models in recurrent events"
+author: "David Herman"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+
+vignette: >
+  %\VignetteIndexEntry{05. Count-based models in recurrent events}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+suppressWarnings({
+  suppressMessages({
+library(revents)
+library(dplyr)
+library(survival)
+library(broom)
+library(MASS)
+  })
+})
+```
+
+```{r echo=TRUE}
+# Load data layout corresponding to the third layout
+file_path_data_csv <- "C:/Users/david/revents/inst/data_layout_3.csv"
+
+data_layout_3 <- read.csv(file_path_data_csv)
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# set scientific notation to FALSE
+options(scipen = 999)
+```
+
+#### **Poisson regression**
+
+The Poisson model can be used as baseline model for recurrent events data. However, the Poisson model assumes that the mean and the variance are equal, which is not always the case in recurrent events data and does not account for dependence between events and event timing.
+
+```{r echo=TRUE}
+poisson.relapses <- glm(
+  COUNT ~ offset(log(LENGHT.TIME)) + DISEASE_COURSE + AGE + SEX +  RACE + TIME_SINCE_DIAGNOSIS, 
+  family = poisson(link = "log"), 
+  data = data_layout_3)
+
+tidy(poisson.relapses, exp = TRUE, conf.int = TRUE) 
+```
+
+In a standard Poisson regression model, the mean and the variance are assumed to be equal. For calculating the *underdispersion or overdispersion ratio*, we need to calculate the residual deviance and the residual degrees of freedom. This ratio is calculated as the ratio of the residual deviance to the residual degrees of freedom.
+
+```{r echo=TRUE, paged.print=TRUE}
+# Get the residual degrees of freedom
+residual_deviance <- deviance(poisson.relapses)
+residual_df <- df.residual(poisson.relapses)
+
+ # Calculate the ratio
+over.under.dispersion_ratio <- residual_deviance / residual_df
+over.under.dispersion_ratio
+```
+
+As the dispersion ratio is different from 1, the Poisson model is not recommended. However, the quasi-Poisson model corrects for under or overdispersion by incorporating a dispersion parameter that scales the variance, providing more accurate estimates.
+
+#### **Quassi-poisson model**
+
+```{r echo=TRUE}
+qpoisson.relapses <- glm(
+  COUNT ~ offset(log(LENGHT.TIME)) + DISEASE_COURSE + AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS,
+  family = quasipoisson(link = "log"),
+  data = data_layout_3)
+
+tidy(qpoisson.relapses, exp = TRUE, conf.int = TRUE) 
+```
+
+Although the estimated coefficients are similar to the Poisson model, the quasi-Poisson model provides more accurate estimates by accounting for underspersion. These differences can be found in the 95% CI of the coefficients.
+
+#### **Negative Binomial model**
+
+The NB regression provides an improved model for recurrent events data compared with Poisson regression as this model assumes that each individual has their own underlying event rate over time and also may include a random component for accounting subject heterogeneity.
+
+```{r echo=TRUE}
+nb.relapses <- glm.nb(
+  COUNT ~ offset(log(LENGHT.TIME)) + DISEASE_COURSE + AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS,
+  data = data_layout_3)
+
+tidy(nb.relapses, exp = TRUE, conf.int = TRUE) 
+```
+
+In this study, with constant relapse rate (see [descriptive analyses](C:/Users/david/revents/docs/articles/descriptive_analyses.html)), the use of NB model can be accurate and recommended also for its ability to account for over or underdispersion and heterogeneity. However, the NB model does not consider event timing.
