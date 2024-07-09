@@ -25,6 +25,7 @@ suppressWarnings({
 library(survival)
 library(broom)
 library(dplyr)
+library(utils)
 library(frailtyEM)
   })
 })
