@@ -1,0 +1,71 @@
+---
+title: "08. Event-specific estimates"
+output: rmarkdown::html_vignette
+author: "David Herman"
+vignette: >
+  %\VignetteIndexEntry{08. Event-specific estimates}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(survival)
+```
+
+Given that PWP, WLW and the PRBC models can be stratified by event number, these models are adequate to obtain the event-specific estimates of the regression parameters in situations in which the the research question may be: a) what is the intervention effect on the number of higher-order events? or b) what is the effect of intervention on the number of subsequent events?
+
+From this models as well is possible to *get the* *same effect estimate than a Coxph model* *for the first event*, as the risk set are the same for all the models for first relapse.
+
+Due to the number of events start to decrease as the event number increases, the estimates for the higher-order events may be less precise than for the first event. Thus, only the first three events are considered in the analysis (SEVENT <= 3).
+
+```{r echo=TRUE}
+# Load data layout corresponding to the third layout
+file_path_data_csv <- "C:/Users/david/revents/inst/data_layout_1.csv"
+
+data_layout_1 <- read.csv(file_path_data_csv)
+```
+
+```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
+# set scientific notation to FALSE
+options(scipen = 999)
+```
+
+#### **PWP (event-specific effect)**
+
+```{r echo=TRUE}
+pwp.ev.sp.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ strata(SEVENT)/(DISEASE_COURSE + 
+    AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS), 
+    data = subset(data_layout_1,SEVENT <= 3))
+
+pwp.ev.sp.relapses
+```
+
+#### **WLW (event-specific effect)**
+
+```{r echo=TRUE}
+wlw.ev.sp.relapses <- coxph(Surv(TSTOP, STATUS) ~ strata(SEVENT)/(DISEASE_COURSE + AGE + SEX + 
+    RACE + TIME_SINCE_DIAGNOSIS) + cluster(ID), 
+    data = subset(data_layout_1,SEVENT <= 3))
+
+wlw.ev.sp.relapses
+```
+
+#### **PCRB (event-specific effect)**
+
+```{r echo=TRUE}
+prcb.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ strata(SEVENT)/(DISEASE_COURSE + AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS) + cluster(ID), data = subset(data_layout_1,SEVENT <= 3))
+
+prcb.relapses
+```
+
+The PWP and PCRB models provide same point estimates with few differences in the 95% confidence intervals due to the lack of time dependent covariates in the conditional model. The risk of the second and third relapse was 33% and 50% significantly lower in SPMS participants than in RRMS group in those models. 
+
+For the WLW, the risk of 2nd and 3rd relapse were also significantly lower (36% and 52% respectively) in the SPMS group.

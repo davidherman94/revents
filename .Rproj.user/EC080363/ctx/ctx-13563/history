@@ -1,0 +1,9 @@
+library(usethis)  # to set up pkgdown
+library(pkgdown)  # to create the pkgdown website
+library(devtools) # to build the package README
+# optional
+library(hexSticker) # to make hex sticker
+usethis::use_pkgdown()
+pkgdown::build_site()
+install.packages("revents")
+install.packages("reda")
