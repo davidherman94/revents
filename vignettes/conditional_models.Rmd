@@ -33,7 +33,7 @@ library(frailtyEM)
 
 ```{r echo=TRUE}
 # Load data layout corresponding to the third layout
-file_path_data_csv <- "C:/Users/david/revents/inst/data_layout_1.csv"
+file_path_data_csv <- "revents/inst/data_layout_1.csv"
 
 data_layout_1 <- read.csv(file_path_data_csv)
 ```
