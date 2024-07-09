@@ -25,7 +25,7 @@ suppressWarnings({
 library(survival)
 library(broom)
 library(dplyr)
-library(utils)
+library(here)
 library(frailtyEM)
   })
 })
@@ -33,7 +33,7 @@ library(frailtyEM)
 
 ```{r echo=TRUE}
 # Load data layout corresponding to the third layout
-file_path_data_csv <- "revents/inst/data_layout_1.csv"
+file_path_data_csv <- here("inst", "data_layout_1.csv")
 
 data_layout_1 <- read.csv(file_path_data_csv)
 ```
