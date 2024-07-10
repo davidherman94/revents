@@ -1,0 +1,16 @@
+pandoc: 3.1.11
+pkgdown: 2.1.0
+pkgdown_sha: ~
+articles:
+  conditional_models: conditional_models.html
+  count_based_models: count_based_models.html
+  database_layout: database_layout.html
+  descriptive_analyses: descriptive_analyses.html
+  event_specific_estimates: event_specific_estimates.html
+  marginal_models: marginal_models.html
+  revents: revents.html
+  simulated_data: simulated_data.html
+last_built: 2024-07-10T12:44Z
+urls:
+  reference: https://davidherman94.github.io/revents/reference
+  article: https://davidherman94.github.io/revents/articles
