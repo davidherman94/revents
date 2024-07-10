@@ -134,4 +134,4 @@ kbl(df_revents[1:10,]) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
-It is pertinent to mention that this type of data is not suitable for running recurrent events models (see [database layout section](C:/Users/david/revents/docs/articles/database_layout.html)). However, this raw data can be used for the first steps of data exploration as it is shown in the following section: [descriptive analyses](C:/Users/david/revents/docs/articles/descriptive_analyses.html).
+It is pertinent to mention that this type of data is not suitable for running recurrent events models (see [database layout section](./database_layout.html)). However, this raw data can be used for the first steps of data exploration as it is shown in the following section: [descriptive analyses](./descriptive_analyses.html).

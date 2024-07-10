@@ -119,7 +119,7 @@ does not account for dependence between events and event timing.</p>
 <span>  data <span class="op">=</span> <span class="va">data_layout_3</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">poisson.relapses</span>, exp <span class="op">=</span> <span class="cn">TRUE</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span>m</span>
 <span><span class="co">#&gt;   term                 estimate std.error statistic  p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)             0.376  0.076<span style="text-decoration: underline;">0</span>     -<span style="color: #BB0000;">12.9</span>   7.10<span style="color: #949494;">e</span><span style="color: #BB0000;">-38</span>    0.324     0.436</span></span>
@@ -158,7 +158,7 @@ variance, providing more accurate estimates.</p>
 <span>  data <span class="op">=</span> <span class="va">data_layout_3</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">qpoisson.relapses</span>, exp <span class="op">=</span> <span class="cn">TRUE</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span>m</span>
 <span><span class="co">#&gt;   term                 estimate std.error statistic  p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)             0.376  0.060<span style="text-decoration: underline;">5</span>     -<span style="color: #BB0000;">16.2</span>   8.49<span style="color: #949494;">e</span><span style="color: #BB0000;">-54</span>    0.334     0.423</span></span>
@@ -186,7 +186,7 @@ include a random component for accounting subject heterogeneity.</p>
 <span>  data <span class="op">=</span> <span class="va">data_layout_3</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">nb.relapses</span>, exp <span class="op">=</span> <span class="cn">TRUE</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span> </span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span>m</span>
 <span><span class="co">#&gt;   term                 estimate std.error statistic  p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> (Intercept)             0.376  0.076<span style="text-decoration: underline;">0</span>     -<span style="color: #BB0000;">12.9</span>   7.13<span style="color: #949494;">e</span><span style="color: #BB0000;">-38</span>    0.324     0.436</span></span>
@@ -195,10 +195,10 @@ include a random component for accounting subject heterogeneity.</p>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> SEXMale                 0.980  0.030<span style="text-decoration: underline;">5</span>      -<span style="color: #BB0000;">0.667</span> 5.05<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.923     1.04 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> RACEWhite               1.12   0.052<span style="text-decoration: underline;">5</span>       2.11  3.47<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>    1.01      1.24 </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> TIME_SINCE_DIAGNOSIS    1.00   0.000<span style="text-decoration: underline;">759</span>     1.50  1.35<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    1.00      1.00</span></span></code></pre></div>
-<p>In this study, with constant relapse rate (see <a href="C:/Users/david/revents/docs/articles/descriptive_analyses.html">descriptive
-analyses</a>), the use of NB model can be accurate and recommended also
-for its ability to account for over or underdispersion and
-heterogeneity. However, the NB model does not consider event timing.</p>
+<p>In this study, with constant relapse rate (see <a href="./descriptive_analyses.html">descriptive analyses</a>), the use of
+NB model can be accurate and recommended also for its ability to account
+for over or underdispersion and heterogeneity. However, the NB model
+does not consider event timing.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>

@@ -36,7 +36,7 @@ data("df_revents", package = "revents")
 df_revents <- revents::df_revents
 ```
 
-Descriptive analyses can be performed with the _raw data_ generated in the previous step but also by using the [modified layouts](C:/Users/david/revents/docs/articles/database_layout.html). In this example, raw simulated data was used to explain the main characteristics of the study population and how to describe recurrent events accurately with mean cumulative function graph.
+Descriptive analyses can be performed with the _raw data_ generated in the previous step but also by using the [modified layouts](./database_layout.html). In this example, raw simulated data was used to explain the main characteristics of the study population and how to describe recurrent events accurately with mean cumulative function graph.
 
 ```{r echo=TRUE}
 head(df_revents)
@@ -178,7 +178,7 @@ comparison_group +
 
 To describe recurrent event data was also estimated the mean cumulative function (MCF), which is recommended for illustrating recurrent events compared with the Kaplan–Meier curves that only look at the first event. *The MCF represents the average number of cumulative events experienced by an individual in the study at each point in time since the start of follow-up.*
 
-For performing this function, it can be used both the row data (df_revents) or data layout 1 ([database layout section](C:/Users/david/revents/vignettes/database_layout.html)) as it only will need the event time or TSTOP, respectively.
+For performing this function, it can be used both the row data (df_revents) or data layout 1 ([database layout section](./database_layout.html)) as it only will need the event time or TSTOP, respectively.
 
 Overall, figure 1 shows how the cumulative rates of relapses in RRMS and SPMS groups varies over time. The x-axis is the time since study entry in years and the y-axis represents the average number of relapses that an individual had experienced during follow-up. 
 

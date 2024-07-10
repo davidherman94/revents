@@ -95,4 +95,4 @@ nb.relapses <- glm.nb(
 tidy(nb.relapses, exp = TRUE, conf.int = TRUE) 
 ```
 
-In this study, with constant relapse rate (see [descriptive analyses](C:/Users/david/revents/docs/articles/descriptive_analyses.html)), the use of NB model can be accurate and recommended also for its ability to account for over or underdispersion and heterogeneity. However, the NB model does not consider event timing.
+In this study, with constant relapse rate (see [descriptive analyses](./descriptive_analyses.html)), the use of NB model can be accurate and recommended also for its ability to account for over or underdispersion and heterogeneity. However, the NB model does not consider event timing.
