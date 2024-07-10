@@ -32,6 +32,7 @@ Suggests:
 VignetteBuilder: knitr
 Imports: 
     broom,
+    here,
     dplyr,
     finalfit,
     forcats,
@@ -49,7 +50,7 @@ Imports:
     writexl,
     tibble,
     frailtyEM
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Roxygen: list(markdown = TRUE)
 Depends: 
     R (>= 2.10)

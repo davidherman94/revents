@@ -98,7 +98,8 @@ Herman</h4>
 <span><span class="op">}</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load data layout corresponding to the third layout</span></span>
-<span><span class="va">file_path_data_csv</span> <span class="op">&lt;-</span> <span class="st">"C:/Users/david/revents/inst/data_layout_1.csv"</span></span>
+<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://here.r-lib.org/" class="external-link">here</a></span><span class="op">)</span></span>
+<span><span class="va">file_path_data_csv</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://here.r-lib.org//reference/here.html" class="external-link">here</a></span><span class="op">(</span><span class="st">"inst"</span>, <span class="st">"data_layout_1.csv"</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data_layout_1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/utils/read.table.html" class="external-link">read.csv</a></span><span class="op">(</span><span class="va">file_path_data_csv</span><span class="op">)</span></span></code></pre></div>
 <div class="section level4">
@@ -147,7 +148,7 @@ constant over time.</p>
 <span>                       <span class="va">SEX</span> <span class="op">+</span> <span class="va">RACE</span> <span class="op">+</span> <span class="va">TIME_SINCE_DIAGNOSIS</span>, data <span class="op">=</span> <span class="va">data_layout_1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">ag.relapses</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span>exp <span class="op">=</span> <span class="cn">TRUE</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 7</span></span>m</span>
 <span><span class="co">#&gt;   term                 estimate std.error statistic  p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DISEASE_COURSESPMS      0.564  0.040<span style="text-decoration: underline;">4</span>     -<span style="color: #BB0000;">14.2</span>   1.44<span style="color: #949494;">e</span><span style="color: #BB0000;">-45</span>    0.522     0.611</span></span>
@@ -241,7 +242,7 @@ event times.</p>
 <span>                          data <span class="op">=</span> <span class="va">data_layout_1</span><span class="op">)</span></span>
 <span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">frailty.relapses</span>, exp <span class="op">=</span> <span class="cn">TRUE</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span>m</span>
 <span><span class="co">#&gt;   term                 estimate std.error statistic  p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DISEASE_COURSESPMS      0.774  0.040<span style="text-decoration: underline;">4</span>   40.0      2.57<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span>    0.715     0.838</span></span>
