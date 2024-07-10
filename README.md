@@ -10,6 +10,14 @@ for analysing recurrent events in chronic diseases. It is based on the
 master’s thesis: “Analysing recurrent events in Multiple Sclerosis:
 overview of statistical models with application in the MSOAC database”.
 
+## Installation
+
+You can install the latest version of revents with:
+
+``` r
+install.packages('revents')
+```
+
 ## Tutorial
 
 To learn how to use the **revents** vignettes, refer to the vignette

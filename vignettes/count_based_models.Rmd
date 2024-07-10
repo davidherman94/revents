@@ -34,9 +34,8 @@ library(MASS)
 
 ```{r echo=TRUE}
 # Load data layout corresponding to the third layout
-file_path_data_csv <- "C:/Users/david/revents/inst/data_layout_3.csv"
-
-data_layout_3 <- read.csv(file_path_data_csv)
+data("data_layout_3", package = "revents")
+data_layout_3 <- revents::data_layout_3
 ```
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}

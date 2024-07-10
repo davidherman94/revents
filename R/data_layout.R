@@ -1,23 +1,23 @@
-#' Datos de ejemplo layout_1
+#' Datos layout_1 for conditional and marginal rates models
 #'
-#' Una descripción de los datos de ejemplo layout_1.
 #'
-#' @format Un data frame con n filas y m columnas.
-#' @source La fuente de los datos
+#'
+#' @format Un data frame con 6347 rows y 13 columns.
+#' @source data simulated from MSOAC parameters
 "data_layout_1"
 
-#' Datos de ejemplo layout_2
+#' Data layout_2 for marginal hazard models
 #'
-#' Una descripción de los datos de ejemplo layout_2.
 #'
-#' @format Un data frame con n filas y m columnas.
-#' @source La fuente de los datos
+#'
+#' @format a data frame with con 15765 rows y 12 columns.
+#' @source data simulated from MSOAC parameters
 "data_layout_2"
 
-#' Datos de ejemplo layout_3
+#' Data layout_3 for count-based models
 #'
-#' Una descripción de los datos de ejemplo layout_3.
 #'
-#' @format Un data frame con n filas y m columnas.
-#' @source La fuente de los datos
+#'
+#' @format Un data frame con 1313 rows y 9 columns.
+#' @source data simulated from MSOAC parameters
 "data_layout_3"

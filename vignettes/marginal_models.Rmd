@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(revents)
 library(survival)
 ```
 
@@ -29,11 +30,10 @@ In marginal models, the data layout 2 is needed for LWA or WLW models while data
 
 ```{r echo=TRUE}
 # Load data layout corresponding to the first and second data layout
-file_path_data_csv_1 <- "C:/Users/david/revents/inst/data_layout_1.csv"
-file_path_data_csv_2 <- "C:/Users/david/revents/inst/data_layout_2.csv"
-
-data_layout_1 <- read.csv(file_path_data_csv_1)
-data_layout_2 <- read.csv(file_path_data_csv_2)
+data("data_layout_1", package = "revents")
+data("data_layout_2", package = "revents")
+data_layout_1 <- revents::data_layout_1
+data_layout_2 <- revents::data_layout_2
 ```
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}

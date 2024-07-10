@@ -20,6 +20,7 @@ knitr::opts_chunk$set(
 
 ```{r message=FALSE, warning=FALSE}
 # Loading libraries
+library(revents)
 library(dplyr)
 library(gtsummary)
 library(reda)
@@ -31,11 +32,8 @@ library(ggplot2)
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 # Load the simulated data
-# Define the file path
-file_path_data_csv <- "C:/Users/david/revents/inst/simulated_data.csv"
-
-# Read the CSV file
-df_revents <- read.csv(file_path_data_csv)
+data("df_revents", package = "revents")
+df_revents <- revents::df_revents
 ```
 
 Descriptive analyses can be performed with the _raw data_ generated in the previous step but also by using the [modified layouts](C:/Users/david/revents/docs/articles/database_layout.html). In this example, raw simulated data was used to explain the main characteristics of the study population and how to describe recurrent events accurately with mean cumulative function graph.
@@ -186,9 +184,8 @@ Overall, figure 1 shows how the cumulative rates of relapses in RRMS and SPMS gr
 
 ```{r echo=TRUE}
 # Load data layout corresponding to the third layout
-file_path_data_csv <- "C:/Users/david/revents/inst/data_layout_1.csv"
-
-data_layout_1 <- read.csv(file_path_data_csv)
+data("data_layout_1", package = "revents")
+data_layout_1 <- revents::data_layout_1
 ```
 
 For example, in the year 5, the MCF value in RRMS is close to 2, which means that RRMS patients experienced, on average, 2 relapses over the first 5 years of follow-up in the study compared with the MCF of 1 (average of 1 relapse) for SPMS diagnostic patients at the same year. Therefore, from this graph we can broadly see that the RRMS group doubles the avareage number of relapses compared to the SPMS group.

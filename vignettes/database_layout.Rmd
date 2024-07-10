@@ -43,11 +43,8 @@ Starting from our first raw data (df_revents), we need to derive the necessary c
 
 ```{r message=FALSE, warning=FALSE}
 # Load the simulated data
-# Define the file path
-file_path_data_csv <- "C:/Users/david/revents/inst/simulated_data.csv"
-
-# Read the CSV file
-df_revents <- read.csv(file_path_data_csv)
+data("df_revents", package = "revents")
+df_revents <- revents::df_revents
 ```
 
 First step, it is necessary to get the time interval (TSTART, TSTOP and TGAP) for each observation as well as the sequence of the event and the total number of events experienced by each patient. The following code snippet shows how to derive these columns.
@@ -163,17 +160,4 @@ data_layout_3 <- data_layout_1 %>%
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
 kbl(data_layout_3[1:10,]) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
-```
-
-```{r echo=TRUE}
-save_data_layout <- function(data_layout, file_name) {
-  file_path_data_csv <- paste0("C:/Users/david/revents/inst/", file_name, ".csv")
-  
-  write.csv(as.data.frame(data_layout), file_path_data_csv)
-}
-
-# Save the data layouts for future use
-save_data_layout(data_layout_1, "data_layout_1")
-save_data_layout(data_layout_2, "data_layout_2")
-save_data_layout(data_layout_3, "data_layout_3")
 ```

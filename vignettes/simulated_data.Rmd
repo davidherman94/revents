@@ -135,10 +135,3 @@ kbl(df_revents[1:10,]) %>%
 ```
 
 It is pertinent to mention that this type of data is not suitable for running recurrent events models (see [database layout section](C:/Users/david/revents/docs/articles/database_layout.html)). However, this raw data can be used for the first steps of data exploration as it is shown in the following section: [descriptive analyses](C:/Users/david/revents/docs/articles/descriptive_analyses.html).
-
-```{r include=FALSE}
-# Save data as CSV
-file_path_data_csv <- "C:/Users/david/revents/inst/simulated_data.csv"
-
-write.csv(as.data.frame(df_revents), file_path_data_csv)
-```

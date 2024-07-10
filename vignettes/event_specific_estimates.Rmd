@@ -17,6 +17,7 @@ knitr::opts_chunk$set(
 
 ```{r setup}
 knitr::opts_chunk$set(warning = FALSE, message = FALSE)
+library(revents)
 library(survival)
 ```
 
@@ -28,9 +29,8 @@ Due to the number of events start to decrease as the event number increases, the
 
 ```{r echo=TRUE}
 # Load data layout corresponding to the third layout
-file_path_data_csv <- "C:/Users/david/revents/inst/data_layout_1.csv"
-
-data_layout_1 <- read.csv(file_path_data_csv)
+data("data_layout_1", package = "revents")
+data_layout_1 <- revents::data_layout_1
 ```
 
 ```{r eval=FALSE, message=FALSE, warning=FALSE, include=FALSE}
