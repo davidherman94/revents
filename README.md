@@ -5,10 +5,11 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of revents is make all the recurrent event functions available
-for analysing recurrent events in chronic diseases. It is based on the
-master’s thesis: “Analysing recurrent events in Multiple Sclerosis:
-overview of statistical models with application in the MSOAC database”.
+The goal of revents is make all the recurrent event functions for
+non-terminal events available for analysing recurrent events in chronic
+diseases. It is based on the master’s thesis: “Analysing recurrent
+events in Multiple Sclerosis: overview of statistical models with
+application in the MSOAC database”.
 
 ## Installation
 
@@ -30,12 +31,10 @@ Amorim LD, Cai J. Modelling recurrent events: a tutorial for analysis in
 epidemiology. Int J Epidemiol. 2015 Feb;44(1):324–33.
 
 Andersen PK, Gill RD. Cox’s Regression Model for Counting Processes: A
-Large Sample Study. Ann Stat. 1982;10(4):1100–20.
-
-Bühler A, Wolbers M, Model F, Wang Q, Belachew S, Manfrini M, et
-al. Recurrent disability progression endpoints in multiple sclerosis
-clinical trials. Mult Scler Houndmills Basingstoke Engl. 2023
-Jan;29(1):130–9.
+Large Sample Study. Ann Stat. 1982;10(4):1100–20. Bühler A, Wolbers M,
+Model F, Wang Q, Belachew S, Manfrini M, et al. Recurrent disability
+progression endpoints in multiple sclerosis clinical trials. Mult Scler
+Houndmills Basingstoke Engl. 2023 Jan;29(1):130–9.
 
 Bühler A, Wang Q, Wolbers M, Model F, Beyersmann J. Comparison of
 Time-To-First-Event and Recurrent Event Methods in Multiple Sclerosis

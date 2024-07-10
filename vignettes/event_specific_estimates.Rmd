@@ -38,7 +38,7 @@ data_layout_1 <- revents::data_layout_1
 options(scipen = 999)
 ```
 
-#### **PWP (event-specific effect)**
+#### **Prentice Williams Peterson - (PWP) (event-specific effect)**
 
 ```{r echo=TRUE}
 pwp.ev.sp.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ strata(SEVENT)/(DISEASE_COURSE + 

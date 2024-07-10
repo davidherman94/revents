@@ -126,7 +126,7 @@ data_layout_2 <-
   # select only necessary variables (TGAP are not necessary in this layout)
     dplyr::select(-TGAP) %>%
   # fill in missing values by repeating the value of the last cell
-    fill(PARAMCD, TSTOP, STATUS, SEVENT, DISEASE_COURSE, SEX, AGE, RACE,
+    fill(PARAMCD, TSTART, TSTOP, STATUS, SEVENT, DISEASE_COURSE, SEX, AGE, RACE,
       TIME_SINCE_DIAGNOSIS
     )
 ```

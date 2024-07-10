@@ -58,7 +58,7 @@ Here it can be seen that the CoxPH model gives an decreasing risk of relapses of
 
 In order to account for them, we can use recurrent events models:
 
-#### **ANDERSEN-GILL (AG) model**
+#### **Andersen-Gill (AG) model**
 
 This is a classical cox extension model for recurrent event data which assumes that events are independent and that the hazard ratio is constant over time.
 
@@ -73,7 +73,7 @@ Adjusting for covariates (in this case there are no time-dependent covariates) a
 
 *It is important to mention that the AG model can also be fitted with a robust = TRUE to take into account correlations among the events and provides robust standard errors (not applied in this example).*
 
-#### **PWP TT (or CT) model (overall effect)**
+#### **Prentice Williams Peterson (PWP TT/CT) model (overall effect)**
 
 The PWP model turns into a useful model when dependency between events become relevant to account. This model add an *strata term* to the model, which allows to account for the dependency between events while obtaining the overall effect.
 
@@ -87,7 +87,7 @@ pwp.tt.relapses
 
 When analyses are performed based on restricted risk sets (the risk set only involves those with the same number of previous events) with a calendar time scale, the PWP gives a HR:0.57 for the SPMS group compared with the RRMS group.
 
-#### **PWP GT model (overall effect)**
+#### **Prentice Williams Peterson (PWP-GT) model (overall effect)**
 
 The PWP model can also be used to account for inter-event dependence when the time scale is the gap time scale. This model is useful when the time between events is of interest and there is a renewal after each event (i.e. the participant returns to the previous state as, for example, in diseases where the community does not develop after the first event).
 

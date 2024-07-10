@@ -9,10 +9,6 @@ vignette: >
   %\VignetteIndexEntry{01. Recurrent events methods: definition and outcomes in multiple sclerosis}
   %\VignetteEncoding{UTF-8}
   %\VignetteEngine{knitr::rmarkdown}
-editor_options: 
-  chunk_output_type: inline
-  markdown: 
-    wrap: sentence
 ---
 
 ```{r, include = FALSE}
@@ -73,4 +69,4 @@ Relapses, are mainly measured by the Annualized Relapse Rate (ARR) in RRMS clini
 
 For the next step of model implementation, the following study design was followed in order to evaluate de effect on relapse outcomes.
 
-![Design Implementation](images/design_implementation.png){width="100%"}
+![Design Implementation](images/design_implementation.PNG){width="100%"}
