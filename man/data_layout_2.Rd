@@ -3,17 +3,17 @@
 \docType{data}
 \name{data_layout_2}
 \alias{data_layout_2}
-\title{Datos de ejemplo layout_2}
+\title{Data layout_2 for marginal hazard models}
 \format{
-Un data frame con n filas y m columnas.
+a data frame with con 15765 rows y 12 columns.
 }
 \source{
-La fuente de los datos
+data simulated from MSOAC parameters
 }
 \usage{
 data_layout_2
 }
 \description{
-Una descripción de los datos de ejemplo layout_2.
+Data layout_2 for marginal hazard models
 }
 \keyword{datasets}

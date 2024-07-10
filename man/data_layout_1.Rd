@@ -3,17 +3,17 @@
 \docType{data}
 \name{data_layout_1}
 \alias{data_layout_1}
-\title{Datos de ejemplo layout_1}
+\title{Datos layout_1 for conditional and marginal rates models}
 \format{
-Un data frame con n filas y m columnas.
+Un data frame con 6347 rows y 13 columns.
 }
 \source{
-La fuente de los datos
+data simulated from MSOAC parameters
 }
 \usage{
 data_layout_1
 }
 \description{
-Una descripción de los datos de ejemplo layout_1.
+Datos layout_1 for conditional and marginal rates models
 }
 \keyword{datasets}

@@ -3,17 +3,17 @@
 \docType{data}
 \name{df_revents}
 \alias{df_revents}
-\title{Datos de ejemplo layout_1}
+\title{Dato simulated}
 \format{
-Un data frame con n filas y m columnas.
+Un data frame con 2601 rows y 11 columns
 }
 \source{
-La fuente de los datos
+MSOAC simulated data
 }
 \usage{
 df_revents
 }
 \description{
-Una descripción de los datos de ejemplo layout_1.
+This data was simulated from original MSOAC parameters and it is explained in vignette of simulated data
 }
 \keyword{datasets}

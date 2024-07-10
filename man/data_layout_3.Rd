@@ -3,17 +3,17 @@
 \docType{data}
 \name{data_layout_3}
 \alias{data_layout_3}
-\title{Datos de ejemplo layout_3}
+\title{Data layout_3 for count-based models}
 \format{
-Un data frame con n filas y m columnas.
+Un data frame con 1313 rows y 9 columns.
 }
 \source{
-La fuente de los datos
+data simulated from MSOAC parameters
 }
 \usage{
 data_layout_3
 }
 \description{
-Una descripción de los datos de ejemplo layout_3.
+Data layout_3 for count-based models
 }
 \keyword{datasets}
