@@ -1,16 +1,16 @@
 ---
-title: "02. Simulating data by using MSOAC parameters"
+title: "02. Simulation of clinical trial data"
 author: "Quentin Pilard"
 output: 
   rmarkdown::html_vignette:
     toc: true
     toc_depth: 2
 vignette: >
-  %\VignetteIndexEntry{02. Simulating data by using MSOAC parameters}
+  %\VignetteIndexEntry{02. Simulation of clinical trial data}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
-For applying the models, simulated data from the MSOAC was used.
+For applying the models, simulated data from clinical trials was used.
 The following code simulates recurrent event data for **relapses in RRMS and SPMS patients**. The data is then combined with baseline characteristics for RRMS and SPMS patients. The simulated data is saved as a CSV file for further use.
 
 ```{r, include = FALSE}

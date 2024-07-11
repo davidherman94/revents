@@ -14,7 +14,7 @@
 #'   \item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}#'
 #'
 #' @format Un data frame con 6347 rows y 13 columns.
-#' @source data simulated from MSOAC parameters
+#' @source data simulated
 "data_layout_1"
 
 #' Data layout_2 for marginal hazard models
@@ -33,7 +33,7 @@
 #'   \item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}
 #'
 #' @format a data frame with con 15765 rows y 12 columns.
-#' @source data simulated from MSOAC parameters
+#' @source data simulated
 "data_layout_2"
 
 #' Data layout_3 for count-based models
@@ -49,5 +49,5 @@
 #'   \item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}
 #'
 #' @format Un data frame con 1313 rows y 9 columns.
-#' @source data simulated from MSOAC parameters
+#' @source data simulated
 "data_layout_3"
