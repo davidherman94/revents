@@ -3,17 +3,10 @@
 \docType{data}
 \name{data_layout_2}
 \alias{data_layout_2}
-\title{Data layout_2 for marginal hazard models}
+\title{Data layout_2}
 \format{
-a data frame with con 15765 rows y 12 columns.
-}
-\source{
-data simulated
-}
-\usage{
-data_layout_2
-}
-\description{
+A data frame with 15765 rows and 12 columns:
+\describe{
 \item{ID}{participant ID}
 \item{PARAMCD}{parameter}
 \item{TSTART}{time study start}
@@ -22,9 +15,19 @@ data_layout_2
 \item{STATUS}{status of the event}
 \item{SEVENT}{sequence number of event per id}
 \item{AGE}{age of the participant}
-\item{SEX}{Sex of the participant}
+\item{SEX}{sex of the participant}
 \item{DISEASE_COURSE}{type of disease course}
 \item{RACE}{race of the participant}
 \item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}
+}
+}
+\source{
+Simulated data for marginal hazard models
+}
+\usage{
+data_layout_2
+}
+\description{
+This dataset contains information about participants, including demographic details and event-related data.
 }
 \keyword{datasets}

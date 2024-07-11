@@ -3,25 +3,28 @@
 \docType{data}
 \name{data_layout_3}
 \alias{data_layout_3}
-\title{Data layout_3 for count-based models}
+\title{Data layout_3}
 \format{
-Un data frame con 1313 rows y 9 columns.
-}
-\source{
-data simulated
-}
-\usage{
-data_layout_3
-}
-\description{
+A data frame with 1313 rows and 9 columns:
+\describe{
 \item{ID}{participant ID}
 \item{PARAMCD}{parameter}
 \item{COUNT}{number of confirmed events}
 \item{SEVENT}{sequence number of event per id}
 \item{AGE}{age of the participant}
-\item{SEX}{Sex of the participant}
+\item{SEX}{sex of the participant}
 \item{DISEASE_COURSE}{type of disease course}
 \item{RACE}{race of the participant}
 \item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}
+}
+}
+\source{
+Simulated data for count-based models
+}
+\usage{
+data_layout_3
+}
+\description{
+This dataset contains information about participants, including demographic details and event-related data.
 }
 \keyword{datasets}

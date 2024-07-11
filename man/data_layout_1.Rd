@@ -3,17 +3,10 @@
 \docType{data}
 \name{data_layout_1}
 \alias{data_layout_1}
-\title{Datos layout_1 for conditional and marginal rates models}
+\title{Data layout_1}
 \format{
-Un data frame con 6347 rows y 13 columns.
-}
-\source{
-data simulated
-}
-\usage{
-data_layout_1
-}
-\description{
+A data frame with 6347 rows and 13 columns:
+\describe{
 \item{ID}{participant ID}
 \item{PARAMCD}{parameter}
 \item{TSTART}{time study start}
@@ -22,9 +15,19 @@ data_layout_1
 \item{STATUS}{status of the event}
 \item{SEVENT}{sequence number of event per id}
 \item{AGE}{age of the participant}
-\item{SEX}{Sex of the participant}
+\item{SEX}{sex of the participant}
 \item{DISEASE_COURSE}{type of disease course}
 \item{RACE}{race of the participant}
-\item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}#'
+\item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}
+}
+}
+\source{
+Simulated data for conditional and marginal rates models
+}
+\usage{
+data_layout_1
+}
+\description{
+This dataset contains information about participants, including demographic details and event-related data.
 }
 \keyword{datasets}
