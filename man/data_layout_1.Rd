@@ -8,12 +8,23 @@
 Un data frame con 6347 rows y 13 columns.
 }
 \source{
-data simulated from MSOAC parameters
+data simulated
 }
 \usage{
 data_layout_1
 }
 \description{
-Datos layout_1 for conditional and marginal rates models
+\item{ID}{participant ID}
+\item{PARAMCD}{parameter}
+\item{TSTART}{time study start}
+\item{TSTOP}{time stop observation}
+\item{TGAP}{time gap between events}
+\item{STATUS}{status of the event}
+\item{SEVENT}{sequence number of event per id}
+\item{AGE}{age of the participant}
+\item{SEX}{Sex of the participant}
+\item{DISEASE_COURSE}{type of disease course}
+\item{RACE}{race of the participant}
+\item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}#'
 }
 \keyword{datasets}

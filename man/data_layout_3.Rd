@@ -8,12 +8,20 @@
 Un data frame con 1313 rows y 9 columns.
 }
 \source{
-data simulated from MSOAC parameters
+data simulated
 }
 \usage{
 data_layout_3
 }
 \description{
-Data layout_3 for count-based models
+\item{ID}{participant ID}
+\item{PARAMCD}{parameter}
+\item{COUNT}{number of confirmed events}
+\item{SEVENT}{sequence number of event per id}
+\item{AGE}{age of the participant}
+\item{SEX}{Sex of the participant}
+\item{DISEASE_COURSE}{type of disease course}
+\item{RACE}{race of the participant}
+\item{TIME_SINCE_DIAGNOSIS}{time since diagnosis}
 }
 \keyword{datasets}
