@@ -1,0 +1,4 @@
+"0","# Save data as CSV"
+"0","file_path_data_csv <- ""C:/Users/david/revents/inst/simulated_data.csv"""
+"0",""
+"0","write.csv(as.data.frame(df_revents), file_path_data_csv)"

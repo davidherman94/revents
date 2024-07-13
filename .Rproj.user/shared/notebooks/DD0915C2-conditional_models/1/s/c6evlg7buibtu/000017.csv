@@ -1,0 +1,3 @@
+"0","# Load data layout corresponding to the third layout"
+"0","data(""data_layout_1"", package = ""revents"")"
+"0","data_layout_1 <- revents::data_layout_1"

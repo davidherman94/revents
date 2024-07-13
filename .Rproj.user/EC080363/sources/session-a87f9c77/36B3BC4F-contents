@@ -1,0 +1,57 @@
+Package: revents
+Date: 2024-05-24
+Type: Package
+Title: revents package
+Version: 0.1.0
+Authors@R: c(
+   person(
+      given = "David",
+      family = "Herman",
+      role = c("aut", "cre"),
+      comment = c(ORCID = "0009-0002-8802-4914"),
+      email = "d.herman@quinten-health.com"
+      ),
+   person(
+      given = "Quentin",
+      family = "Pilard",
+      role = c("aut"),
+      email = "q.pilard@quinten-health.com"
+      ),
+   person(
+      given = "Quinten Health",
+      family = "",
+      role = c("cph")))
+Maintainer: David Herman <d.herman@quinten-health.com>
+Description: Recurrent event models for non-terminal events
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+Imports: 
+    broom,
+    here,
+    dplyr,
+    finalfit,
+    forcats,
+    ggplot2,
+    gtsummary,
+    kableExtra,
+    MASS,
+    pacman,
+    purrr,
+    reda,
+    reReg,
+    stringr,
+    survival,
+    tidyr,
+    writexl,
+    tibble,
+    frailtyEM
+RoxygenNote: 7.3.2
+Roxygen: list(markdown = TRUE)
+Depends: 
+    R (>= 2.10)
+URL: https://davidherman94.github.io/revents/

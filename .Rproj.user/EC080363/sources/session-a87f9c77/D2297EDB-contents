@@ -1,0 +1,137 @@
+---
+title: "02. Simulation of clinical trial data"
+author: "Quentin Pilard"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+    toc_depth: 2
+vignette: >
+  %\VignetteIndexEntry{02. Simulation of clinical trial data}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+For applying the models, simulated data from clinical trials was used.
+The following code simulates recurrent event data for **relapses in RRMS and SPMS patients**. The data is then combined with baseline characteristics for RRMS and SPMS patients. The simulated data is saved as a CSV file for further use.
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(dplyr)
+library(purrr)
+library(tibble)
+library(reda)
+library(tidyr)
+library(gtsummary)
+library(writexl)
+library(kableExtra)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Set seed for reproducibility
+set.seed(123)
+```
+
+```{r message=FALSE, warning=FALSE}
+# Define a function to simulate recurrent event data using reda
+simulate_recurrent_event_data <- function(n, max_event, mean_follow_up_time, max_follow_up_time, mstype, outcome) {
+  
+  simulate_individual_data <- function(id) {
+    
+    # Generate baseline hazard times (exponential distribution)
+    basehaz <- rexp(n = pmax(pmin(round(rnorm(1, max_event/2, max_event/4)), max_event), 1), 
+                    rate = 1 / mean_follow_up_time)
+    basehaz <- basehaz[basehaz < max_follow_up_time]
+    basehaz <- c(basehaz,max_follow_up_time)
+    
+    # Create a tibble for the individual's data
+    tibble(
+      id = id,
+      status = c(rep(1, length(basehaz) - 1), 0),
+      time = basehaz,
+      mstype = mstype,
+      outcome = outcome
+    )
+  }
+  
+  # Use purrr::map_dfr to apply the helper function to each individual and combine the results
+  sim_data_all <- map_dfr(1:n, simulate_individual_data) %>%
+    arrange(id, time)
+  
+  # Return the simulated data
+  return(sim_data_all)
+}
+```
+
+```{r message=FALSE, warning=FALSE}
+# Generate the datasets for relapses in RRMS and SPMS patients
+# this parameters have been changed in order to find differences between groups
+# just for illustrative purposes
+rrms_relapse_data<-simulate_recurrent_event_data(n = 791,
+                                                 max_event = 10,
+                                                 mean_follow_up_time = 8,
+                                                 max_follow_up_time = 10, 
+                                                 mstype = "RRMS", 
+                                                 outcome = "RELAPSE")
+spms_relapse_data<-simulate_recurrent_event_data(n = 522,
+                                                 max_event = 4,
+                                                 mean_follow_up_time = 5,
+                                                 max_follow_up_time = 10, 
+                                                 mstype = "SPMS", 
+                                                 outcome = "RELAPSE")
+spms_relapse_data$id <- spms_relapse_data$id + 791
+```
+
+```{r message=FALSE, warning=FALSE}
+# Bind datasets
+df <- bind_rows(rrms_relapse_data,
+                spms_relapse_data)
+```
+
+```{r message=FALSE, warning=FALSE}
+#Add baaseline characteristics
+# Function to generate data for RRMS
+generate_rrms_data <- function(n) {
+  tibble(
+    id = 1:n,
+    Age = rnorm(n, mean = 36.5, sd = 9.1),
+    Sex = factor(rbinom(n, 1, prob = 0.70), labels = c("Male", "Female")),
+    Race = factor(rbinom(n, 1, prob = 0.88), labels = c("No white", "White")),
+    Time_since_diagnosis = rlnorm(n, meanlog = log(2), sdlog = log(5/2)),
+    EDSS_overall = rlnorm(n, meanlog = log(2), sdlog = log(3.5/1.5))
+  )
+}
+
+# Function to generate data for SPMS
+generate_spms_data <- function(n) {
+  tibble(
+    id = 1:n,
+    Age = rnorm(n, mean = 49.4, sd = 8.1),
+    Sex = factor(rbinom(n, 1, prob = 0.63), labels = c("Male", "Female")),
+    Race = factor(rbinom(n, 1, prob = 0.96), labels = c("No white", "White")),
+    Time_since_diagnosis = rlnorm(n, meanlog = log(14.5), sdlog = log(22/7.8)), # approximate log-normal
+    EDSS_overall = rlnorm(n, meanlog = log(6), sdlog = log(6.5/4.5)) # approximate log-normal
+  )
+}
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+# Generate the datasets
+rrms_data <- generate_rrms_data(791)
+spms_data <- generate_spms_data(522)
+spms_data$id <- spms_data$id + 791
+
+#Merge with the previous part
+df_revents <- inner_join(bind_rows(rrms_data, spms_data),df, by="id")
+```
+
+```{r echo=TRUE, message=FALSE, warning=FALSE}
+kbl(df_revents[1:10,]) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
+```
+
+It is pertinent to mention that this type of data is not suitable for running recurrent events models (see [database layout section](./database_layout.html)). However, this raw data can be used for the first steps of data exploration as it is shown in the following section: [descriptive analyses](./descriptive_analyses.html).

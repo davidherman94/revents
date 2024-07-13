@@ -1,0 +1,7 @@
+"0","# Generate the datasets"
+"0","rrms_data <- generate_rrms_data(791)"
+"0","spms_data <- generate_spms_data(522)"
+"0","spms_data$id <- spms_data$id + 791"
+"0",""
+"0","#Merge with the previous part"
+"0","df_revents <- inner_join(bind_rows(rrms_data, spms_data),df, by=""id"")"
