@@ -65,7 +65,8 @@ prcb.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ strata(SEVENT)/(DISEASE_COU
 
 prcb.relapses
 ```
+As expected, event-specific estimates from the PWP, WLW, and PCRB models produced identical estimates for the first event compared to the CoxPH model.
 
-The PWP and PCRB models provide same point estimates with few differences in the 95% confidence intervals due to the lack of time dependent covariates in the conditional model. The risk of the second and third relapse was 33% and 50% significantly lower in SPMS participants than in RRMS group in those models. 
+The PWP and PCRB models provide same point estimates with few differences in the 95% confidence intervals due to the lack of time dependent covariates in the conditional model. The risk of the second and third relapse was 61% (HR = 0.39) and 68% (HR = 0.32) significantly lower in SPMS participants than in RRMS group in those models. 
 
-For the WLW, the risk of 2nd and 3rd relapse were also significantly lower (36% and 52% respectively) in the SPMS group.
+For the WLW, the risk of 2nd and 3rd relapse were also significantly lower (65% and 75% respectively) in the SPMS group.

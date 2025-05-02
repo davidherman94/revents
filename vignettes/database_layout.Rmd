@@ -50,25 +50,18 @@ df_revents <- revents::df_revents
 First step, it is necessary to get the time interval (TSTART, TSTOP and TGAP) for each observation as well as the sequence of the event and the total number of events experienced by each patient. The following code snippet shows how to derive these columns.
 
 ```{r}
+# Load the simulated data
 final_relapses <- df_revents %>%
   dplyr::select(id, time, status) %>%
-  #Pivot dataset
-  pivot_longer(!id, names_to = "STATUS", values_to = "TIME")%>%
-  #There were some duplicates because of the merge so I deleted them
-  distinct()%>%
-  #Define the censoring flag
-  mutate(STATUS = ifelse(STATUS == "time", 1, 0)) %>%
-  #Define tstart and tstop
   group_by(id) %>%
-  arrange(id,TIME) %>%
-  mutate(TSTART = replace_na(lag(TIME),0)) %>%
-  rename(TSTOP = TIME) %>%  
-  # remove rows where TSTART == TSTOP == 0 ó 1
-  filter(!(TSTART == TSTOP & TSTART %in% c(0, 1))) %>%
-  mutate(PARAMCD = "ARR", # parameter code "Anualized relapse rate"
-         TGAP = TSTOP - TSTART, # time between events
-         SEVENT = row_number()) %>% # sequence number of event per id
-  dplyr::select(id, PARAMCD, TSTART, TSTOP, TGAP, STATUS, SEVENT) 
+  arrange(id, time) %>%
+  mutate(TSTART = lag(time, default = 0),
+         TSTOP = time,
+         TGAP = TSTOP - TSTART,
+         SEVENT = row_number()) %>%
+  mutate(PARAMCD = "ARR") %>%
+  dplyr::select(id, PARAMCD, TSTART, TSTOP, TGAP, status, SEVENT) %>%
+  rename(STATUS = status)
 ```
 
 Following that, the rest of variables needs to be joined from the original dataset by id. The following code snippet shows how to join the variables.
@@ -101,7 +94,7 @@ For illustrate these differences, in the Table 1 is displayed the data layout fo
 **Table 1.** Data layout 1: conditionals and marginals rate models.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-kbl(data_layout_1[1:10,]) %>%
+kbl(data_layout_1[1:13,]) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
@@ -110,31 +103,35 @@ kbl(data_layout_1[1:10,]) %>%
 *Data layout 2* for WLW and LWA should be arranged as each participant have the same number of entries (Table 2). That means that each id has many lines as the maximum number of events that could be observed. In this example, maximum number of Sevent was defined Sevent was 7.
 
 ```{r echo=TRUE}
-# Find the maximum SEVENT value in your data
+# Step 1: Get max event sequence
 max_SEVENT <- max(data_layout_1$SEVENT)
 
-# Create a data frame with all combinations of USUBJID and SEVENT
+# Step 2: Create all combinations of ID and SEVENT
 combinations <- expand.grid(ID = unique(data_layout_1$ID), SEVENT = 1:max_SEVENT)
 
-# Merge the original data frame with all combinations of USUBJID and SEVENT
+# Step 3: Merge and don't fill event-related columns
 data_layout_2 <- 
-  merge(combinations, data_layout_1,
-      by = c("ID", "SEVENT"),
-      all.x = TRUE
-    ) %>%
-    arrange(ID, SEVENT) %>%
-  # select only necessary variables (TGAP are not necessary in this layout)
-    dplyr::select(-TGAP) %>%
+  combinations %>%
+  left_join(data_layout_1, by = c("ID", "SEVENT")) %>%
+  arrange(ID, SEVENT) %>%
+  mutate(
+    IMPUTED = ifelse(is.na(STATUS), TRUE, FALSE)  # optional: mark imputed rows
+  ) %>%
+  # select only necessary variables (TGAP is not necessary in this layout)
+  dplyr::select(-TGAP, -IMPUTED) %>%
+  # Fill only static covariates
+  group_by(ID) %>%
   # fill in missing values by repeating the value of the last cell
-    fill(PARAMCD, TSTART, TSTOP, STATUS, SEVENT, DISEASE_COURSE, SEX, AGE, RACE,
-      TIME_SINCE_DIAGNOSIS
-    )
+  fill(PARAMCD, TSTART, TSTOP, STATUS, SEVENT, DISEASE_COURSE, SEX, AGE, RACE,
+       TIME_SINCE_DIAGNOSIS
+  ) %>%
+  ungroup()
 ```
 
 **Table 2.** Data layout 2: WLW and LWA marginals hazards models.
 
 ```{r echo=TRUE, message=FALSE, warning=FALSE}
-kbl(data_layout_2[1:20,]) %>%
+kbl(data_layout_2[1:22,]) %>%
   kable_styling(bootstrap_options = c("striped", "hover", "condensed"))
 ```
 
@@ -144,15 +141,15 @@ In classical **count-based models** such as Poisson regression, each participant
 
 ```{r echo=TRUE}
 data_layout_3 <- data_layout_1 %>%
-    group_by(ID) %>%
-    reframe(
-      DISEASE_COURSE = first(DISEASE_COURSE),
-      COUNT = as.numeric(sum(STATUS == 1)), # total number of events 
-      LENGHT.TIME = last(TSTOP),
-      AGE = first(AGE),
-      SEX = first(SEX),
-      RACE = first(RACE),
-      TIME_SINCE_DIAGNOSIS = first(TIME_SINCE_DIAGNOSIS))
+  group_by(ID) %>%
+  reframe(
+    DISEASE_COURSE = first(DISEASE_COURSE),
+    COUNT = as.numeric(sum(STATUS == 1)), # total number of events 
+    LENGHT.TIME = last(TSTOP),
+    AGE = first(AGE),
+    SEX = first(SEX),
+    RACE = first(RACE),
+    TIME_SINCE_DIAGNOSIS = first(TIME_SINCE_DIAGNOSIS))
 ```
 
 **Table 3.** Data layout 3: count-based models.

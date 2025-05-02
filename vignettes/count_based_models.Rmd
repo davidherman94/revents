@@ -67,8 +67,7 @@ residual_df <- df.residual(poisson.relapses)
 over.under.dispersion_ratio <- residual_deviance / residual_df
 over.under.dispersion_ratio
 ```
-
-As the dispersion ratio is different from 1, the Poisson model is not recommended. However, the quasi-Poisson model corrects for under or overdispersion by incorporating a dispersion parameter that scales the variance, providing more accurate estimates.
+In this simulated dataset, the dispersion ratio was close to 1 (i.e., the Poisson model is appropiate). However, in cases of overdispersion (dispersion ratio > 1), which are more common, the quasi-Poisson model adjusts for it by incorporating a dispersion parameter that scales the variance, leading to more reliable standard error estimates.
 
 #### **Quassi-poisson model**
 
@@ -81,11 +80,9 @@ qpoisson.relapses <- glm(
 tidy(qpoisson.relapses, exp = TRUE, conf.int = TRUE) 
 ```
 
-Although the estimated coefficients are similar to the Poisson model, the quasi-Poisson model provides more accurate estimates by accounting for underspersion. These differences can be found in the 95% CI of the coefficients.
-
 #### **Negative Binomial model**
 
-The NB regression provides an improved model for recurrent events data compared with Poisson regression as this model assumes that each individual has their own underlying event rate over time and also may include a random component for accounting subject heterogeneity.
+The NB regression provides an improved model for recurrent events data compared with Poisson regression as this model assumes that each individual has their own underlying event rate over time and also may include a random component that follows a gamma distribution for accounting subject heterogeneity.
 
 ```{r echo=TRUE}
 nb.relapses <- glm.nb(
@@ -95,4 +92,4 @@ nb.relapses <- glm.nb(
 tidy(nb.relapses, exp = TRUE, conf.int = TRUE) 
 ```
 
-In this study, with constant relapse rate (see [descriptive analyses](./descriptive_analyses.html)), the use of NB model can be accurate and recommended also for its ability to account for over or underdispersion and heterogeneity. However, the NB model does not consider event timing.
+In this study, with constant relapse rate (see [descriptive analyses](./descriptive_analyses.html)), the use of NB model can be accurate and recommended also for its ability to account for overdispersion and heterogeneity. However, the NB model, as other count-based models, does not consider event timing.

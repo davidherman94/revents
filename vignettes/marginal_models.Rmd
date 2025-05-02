@@ -74,5 +74,4 @@ lwyy.relapses <- coxph(Surv(TSTART, TSTOP, STATUS) ~ DISEASE_COURSE + AGE + SEX 
 
 lwyy.relapses
 ```
-
-Even though the AG (with robust SE) and LWYY have similar numerical values without time dependant covariates, they model different ratios (AG models intensity function and the marginal rates model models rate of events). In this example, by partially considering the dependency structure, the LWYY model estimated a similar risk reduction than the AG model of 44% (RR: 0.57) in the SPMS group compared to RRMS.
+Even though the AG (with robust SE) and LWYY have similar numerical values without time dependant covariates, they model different ratios (AG models intensity function and the marginal rates model models rate of events). In this example, by partially considering the dependency structure, the LWYY model estimated a similar risk reduction than the AG model of 56% (RR: 0.44) in the SPMS group compared to RRMS.

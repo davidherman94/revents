@@ -5,25 +5,22 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The goal of revents is make all the recurrent event functions for
-non-terminal events available for analysing recurrent events in chronic
-diseases. It is partially based on the master’s thesis: “Analysing
-recurrent events in Multiple Sclerosis: overview of statistical models
-with application in the MSOAC database”.
-
-## Installation
-
-You can install the latest version of revents with:
-
-``` r
-install.packages('revents')
-```
+The goal of revents is to provide a collection of vignettes that explain
+key statistical models and functions for analyzing recurrent events in
+the context of non-terminal events, especially in chronic disease
+settings. It is based on the master’s thesis “Analysing recurrent events
+in Multiple Sclerosis: overview of statistical models with application
+in the MSOAC database.”
 
 ## Tutorial
 
-To learn how to use the **revents** vignettes, refer to the vignette
-section. The vignette provides a step-by-step guide on how to use the
-tutorial to analyse recurrent events in chronic diseases.
+In the **vignettes** section you will find a step-by-step guide on how
+to perform the main models for analyzing recurrent events in
+non-terminal events in R. The simulated data used in the vignettes (Data
+layout 1, 2 and 3) is available in the **data** folder in the shared
+GitHub repository or it can be obtained by following the code since the
+simulated of clinical trial data vignette. The **revents** package does
+not need to be installed to use the vignettes.
 
 ## Bibliography
 
@@ -51,3 +48,13 @@ application to childhood infectious diseases. Stat Med. 2000 Jan
 Wang YC, Meyerson L, Tang YQ, Qian N. Statistical methods for the
 analysis of relapse data in MS clinical trials. J Neurol Sci. 2009 Oct
 15;285(1):206–11.
+
+## Citation
+
+If you use the **revents** vignettes in your work, please cite the
+following article published in the Journal of Neurology:
+
+“Analyzing recurrent events in multiple sclerosis: a review of
+statistical models with application to the MSOAC database,” authored by
+David Herman, Julien Tanniou, Emmanuelle Leray, Chloé Pierret, and
+Quentin Pilard.

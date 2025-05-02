@@ -12,7 +12,7 @@ authors:
 navbar:
   right:
     - icon: fa-github
-      href: https://gitlab.par.quinten.io/d.herman/revents
+      href: https://github.com/davidherman94/revents
   left:
     - icon: fa-home fa-lg
       href: index.html
@@ -22,10 +22,10 @@ navbar:
     #   href: reference/index.html
 
 articles:
-  - title: "Application of recurrent event methods"
+  - title: "Implementation of recurrent event methods"
     desc: >
-      These vignettes provide an introduction to apply recurrent
-      event models in chronic diseases with **revents** package.
+      In the following vignettes, the main recurrent event models are
+      implemented step by step for non-terminal events.
     contents:
       -   revents
       -   simulated_data
