@@ -1,17 +1,38 @@
-pandoc: 3.1.1
-pkgdown: 2.0.7
-pkgdown_sha: ~
+url: https://davidherman94.github.io/revents/
+template:
+  bootstrap: 5
+page-navigation: true
+
+#search: false
+
+authors:
+  Quinten Health:
+    href: https://www.quinten-health.com/
+
+navbar:
+  right:
+    - icon: fa-github
+      href: https://github.com/davidherman94/revents
+  left:
+    - icon: fa-home fa-lg
+      href: index.html
+    - text: "Vignettes"
+      href: articles/index.html
+    # - text: "Functions" ## functions were removed from the navbar
+    #   href: reference/index.html
+
 articles:
-  conditional_models: conditional_models.html
-  count_based_models: count_based_models.html
-  database_layout: database_layout.html
-  descriptive_analyses: descriptive_analyses.html
-  event_specific_estimates: event_specific_estimates.html
-  marginal_models: marginal_models.html
-  revents: revents.html
-  simulated_data: simulated_data.html
-last_built: 2025-05-02T13:10Z
-urls:
-  reference: https://davidherman94.github.io/revents/reference
-  article: https://davidherman94.github.io/revents/articles
+  - title: "Implementation of recurrent event methods"
+    desc: >
+      In the following vignettes, the main recurrent event models are
+      implemented step by step for non-terminal events.
+    contents:
+      -   revents
+      -   simulated_data
+      -   descriptive_analyses
+      -   database_layout
+      -   count_based_models
+      -   conditional_models
+      -   marginal_models
+      -   event_specific_estimates
 

@@ -1,4 +1,30 @@
 url: https://davidherman94.github.io/revents/
 template:
   bootstrap: 5
+page-navigation: yes
+authors:
+  Quinten Health:
+    href: https://www.quinten-health.com/
+navbar:
+  right:
+  - icon: fa-github
+    href: https://github.com/davidherman94/revents
+  left:
+  - icon: fa-home fa-lg
+    href: index.html
+  - text: Vignettes
+    href: articles/index.html
+articles:
+- title: Implementation of recurrent event methods
+  desc: |
+    In the following vignettes, the main recurrent event models are implemented step by step for non-terminal events.
+  contents:
+  - revents
+  - simulated_data
+  - descriptive_analyses
+  - database_layout
+  - count_based_models
+  - conditional_models
+  - marginal_models
+  - event_specific_estimates
 
