@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>04. Data layout for recurrent event analyses • revents</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="04. Data layout for recurrent event analyses">
 </head>
 <body>
@@ -35,11 +34,25 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home fa-lg"></span></a></li>
-<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Vignettes</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/revents.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/conditional_models.html">06. Conditional models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/count_based_models.html">05. Count-based models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/database_layout.html">04. Data layout for recurrent event analyses</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive_analyses.html">03. Descriptive analyses in recurrent event endpoints</a></li>
+    <li><a class="dropdown-item" href="../articles/event_specific_estimates.html">08. Event-specific estimates</a></li>
+    <li><a class="dropdown-item" href="../articles/marginal_models.html">07. Marginal models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/simulated_data.html">02. Simulation of clinical trial data</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="https://gitlab.par.quinten.io/d.herman/revents"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
       </ul>
 </div>
 
@@ -94,25 +107,18 @@ and TGAP) for each observation as well as the sequence of the event and
 the total number of events experienced by each patient. The following
 code snippet shows how to derive these columns.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">final_relapses</span> <span class="op">&lt;-</span> <span class="va">df_revents</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="co"># Load the simulated data</span></span>
+<span><span class="va">final_relapses</span> <span class="op">&lt;-</span> <span class="va">df_revents</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">time</span>, <span class="va">status</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="co">#Pivot dataset</span></span>
-<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/pivot_longer.html" class="external-link">pivot_longer</a></span><span class="op">(</span><span class="op">!</span><span class="va">id</span>, names_to <span class="op">=</span> <span class="st">"STATUS"</span>, values_to <span class="op">=</span> <span class="st">"TIME"</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="co">#There were some duplicates because of the merge so I deleted them</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/distinct.html" class="external-link">distinct</a></span><span class="op">(</span><span class="op">)</span><span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="co">#Define the censoring flag</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>STATUS <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="va">STATUS</span> <span class="op">==</span> <span class="st">"time"</span>, <span class="fl">1</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="co">#Define tstart and tstop</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">id</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">id</span>,<span class="va">TIME</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>TSTART <span class="op">=</span> <span class="fu"><a href="https://tidyr.tidyverse.org/reference/replace_na.html" class="external-link">replace_na</a></span><span class="op">(</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">lag</a></span><span class="op">(</span><span class="va">TIME</span><span class="op">)</span>,<span class="fl">0</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>TSTOP <span class="op">=</span> <span class="va">TIME</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>  </span>
-<span>  <span class="co"># remove rows where TSTART == TSTOP == 0 ó 1</span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="op">!</span><span class="op">(</span><span class="va">TSTART</span> <span class="op">==</span> <span class="va">TSTOP</span> <span class="op">&amp;</span> <span class="va">TSTART</span> <span class="op"><a href="https://rdrr.io/r/base/match.html" class="external-link">%in%</a></span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">1</span><span class="op">)</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>PARAMCD <span class="op">=</span> <span class="st">"ARR"</span>, <span class="co"># parameter code "Anualized relapse rate"</span></span>
-<span>         TGAP <span class="op">=</span> <span class="va">TSTOP</span> <span class="op">-</span> <span class="va">TSTART</span>, <span class="co"># time between events</span></span>
-<span>         SEVENT <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html" class="external-link">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> <span class="co"># sequence number of event per id</span></span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">PARAMCD</span>, <span class="va">TSTART</span>, <span class="va">TSTOP</span>, <span class="va">TGAP</span>, <span class="va">STATUS</span>, <span class="va">SEVENT</span><span class="op">)</span> </span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">time</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>TSTART <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/lead-lag.html" class="external-link">lag</a></span><span class="op">(</span><span class="va">time</span>, default <span class="op">=</span> <span class="fl">0</span><span class="op">)</span>,</span>
+<span>         TSTOP <span class="op">=</span> <span class="va">time</span>,</span>
+<span>         TGAP <span class="op">=</span> <span class="va">TSTOP</span> <span class="op">-</span> <span class="va">TSTART</span>,</span>
+<span>         SEVENT <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/row_number.html" class="external-link">row_number</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>PARAMCD <span class="op">=</span> <span class="st">"ARR"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id</span>, <span class="va">PARAMCD</span>, <span class="va">TSTART</span>, <span class="va">TSTOP</span>, <span class="va">TGAP</span>, <span class="va">status</span>, <span class="va">SEVENT</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html" class="external-link">rename</a></span><span class="op">(</span>STATUS <span class="op">=</span> <span class="va">status</span><span class="op">)</span></span></code></pre></div>
 <p>Following that, the rest of variables needs to be joined from the
 original dataset by id. The following code snippet shows how to join the
 variables.</p>
@@ -161,7 +167,7 @@ last line corresponding to the time of right-censoring.</p>
 <p><strong>Table 1.</strong> Data layout 1: conditionals and marginals
 rate models.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">data_layout_1</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">data_layout_1</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">13</span>,<span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -290,54 +296,16 @@ ARR
 0.4496878
 </td>
 <td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-0.5503122
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-3
-</td>
-<td style="text-align:right;">
-41.32254
-</td>
-<td style="text-align:left;">
-Male
-</td>
-<td style="text-align:left;">
-RRMS
-</td>
-<td style="text-align:left;">
-White
-</td>
-<td style="text-align:right;">
-6.099722
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:left;">
-ARR
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
 2.5320097
 </td>
 <td style="text-align:right;">
-1.5320097
+2.0823219
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 <td style="text-align:right;">
 41.32254
@@ -372,10 +340,10 @@ ARR
 7.4679903
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
-5
+4
 </td>
 <td style="text-align:right;">
 41.32254
@@ -442,54 +410,16 @@ ARR
 0.2332276
 </td>
 <td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
-0.7667724
-</td>
-<td style="text-align:right;">
-0
-</td>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:right;">
-31.44477
-</td>
-<td style="text-align:left;">
-Female
-</td>
-<td style="text-align:left;">
-RRMS
-</td>
-<td style="text-align:left;">
-White
-</td>
-<td style="text-align:right;">
-3.371547
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-2
-</td>
-<td style="text-align:left;">
-ARR
-</td>
-<td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
 1.1621344
 </td>
 <td style="text-align:right;">
-0.1621344
+0.9289069
 </td>
 <td style="text-align:right;">
 1
 </td>
 <td style="text-align:right;">
-3
+2
 </td>
 <td style="text-align:right;">
 31.44477
@@ -527,7 +457,7 @@ ARR
 1
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 <td style="text-align:right;">
 31.44477
@@ -565,7 +495,197 @@ ARR
 1
 </td>
 <td style="text-align:right;">
+4
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+2.2481090
+</td>
+<td style="text-align:right;">
+2.8411302
+</td>
+<td style="text-align:right;">
+0.5930211
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
 5
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+2.8411302
+</td>
+<td style="text-align:right;">
+3.0169426
+</td>
+<td style="text-align:right;">
+0.1758125
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+6
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+3.0169426
+</td>
+<td style="text-align:right;">
+3.8417178
+</td>
+<td style="text-align:right;">
+0.8247752
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+7
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+3.8417178
+</td>
+<td style="text-align:right;">
+8.0386405
+</td>
+<td style="text-align:right;">
+4.1969226
+</td>
+<td style="text-align:right;">
+1
+</td>
+<td style="text-align:right;">
+8
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+8.0386405
+</td>
+<td style="text-align:right;">
+10.0000000
+</td>
+<td style="text-align:right;">
+1.9613595
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+9
 </td>
 <td style="text-align:right;">
 31.44477
@@ -595,29 +715,33 @@ each id has many lines as the maximum number of events that could be
 observed. In this example, maximum number of Sevent was defined Sevent
 was 7.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Find the maximum SEVENT value in your data</span></span>
+<code class="sourceCode R"><span><span class="co"># Step 1: Get max event sequence</span></span>
 <span><span class="va">max_SEVENT</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/Extremes.html" class="external-link">max</a></span><span class="op">(</span><span class="va">data_layout_1</span><span class="op">$</span><span class="va">SEVENT</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Create a data frame with all combinations of USUBJID and SEVENT</span></span>
+<span><span class="co"># Step 2: Create all combinations of ID and SEVENT</span></span>
 <span><span class="va">combinations</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/expand.grid.html" class="external-link">expand.grid</a></span><span class="op">(</span>ID <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">data_layout_1</span><span class="op">$</span><span class="va">ID</span><span class="op">)</span>, SEVENT <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="va">max_SEVENT</span><span class="op">)</span></span>
 <span></span>
-<span><span class="co"># Merge the original data frame with all combinations of USUBJID and SEVENT</span></span>
+<span><span class="co"># Step 3: Merge and don't fill event-related columns</span></span>
 <span><span class="va">data_layout_2</span> <span class="op">&lt;-</span> </span>
-<span>  <span class="fu"><a href="https://rdrr.io/r/base/merge.html" class="external-link">merge</a></span><span class="op">(</span><span class="va">combinations</span>, <span class="va">data_layout_1</span>,</span>
-<span>      by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID"</span>, <span class="st">"SEVENT"</span><span class="op">)</span>,</span>
-<span>      all.x <span class="op">=</span> <span class="cn">TRUE</span></span>
-<span>    <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">SEVENT</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>  <span class="co"># select only necessary variables (TGAP are not necessary in this layout)</span></span>
-<span>    <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">TGAP</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="va">combinations</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">left_join</a></span><span class="op">(</span><span class="va">data_layout_1</span>, by <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"ID"</span>, <span class="st">"SEVENT"</span><span class="op">)</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/arrange.html" class="external-link">arrange</a></span><span class="op">(</span><span class="va">ID</span>, <span class="va">SEVENT</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span></span>
+<span>    IMPUTED <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html" class="external-link">ifelse</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html" class="external-link">is.na</a></span><span class="op">(</span><span class="va">STATUS</span><span class="op">)</span>, <span class="cn">TRUE</span>, <span class="cn">FALSE</span><span class="op">)</span>  <span class="co"># optional: mark imputed rows</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># select only necessary variables (TGAP is not necessary in this layout)</span></span>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">TGAP</span>, <span class="op">-</span><span class="va">IMPUTED</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="co"># Fill only static covariates</span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="co"># fill in missing values by repeating the value of the last cell</span></span>
-<span>    <span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html" class="external-link">fill</a></span><span class="op">(</span><span class="va">PARAMCD</span>, <span class="va">TSTART</span>, <span class="va">TSTOP</span>, <span class="va">STATUS</span>, <span class="va">SEVENT</span>, <span class="va">DISEASE_COURSE</span>, <span class="va">SEX</span>, <span class="va">AGE</span>, <span class="va">RACE</span>,</span>
-<span>      <span class="va">TIME_SINCE_DIAGNOSIS</span></span>
-<span>    <span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://tidyr.tidyverse.org/reference/fill.html" class="external-link">fill</a></span><span class="op">(</span><span class="va">PARAMCD</span>, <span class="va">TSTART</span>, <span class="va">TSTOP</span>, <span class="va">STATUS</span>, <span class="va">SEVENT</span>, <span class="va">DISEASE_COURSE</span>, <span class="va">SEX</span>, <span class="va">AGE</span>, <span class="va">RACE</span>,</span>
+<span>       <span class="va">TIME_SINCE_DIAGNOSIS</span></span>
+<span>  <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Table 2.</strong> Data layout 2: WLW and LWA marginals
 hazards models.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">data_layout_2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">20</span>,<span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">data_layout_2</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">22</span>,<span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kable_styling.html" class="external-link">kable_styling</a></span><span class="op">(</span>bootstrap_options <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table table table-striped table-hover table-condensed" style="margin-left: auto; margin-right: auto;">
 <thead><tr>
@@ -740,10 +864,10 @@ ARR
 0.4496878
 </td>
 <td style="text-align:right;">
-1.0000000
+2.5320097
 </td>
 <td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
 41.32254
@@ -772,13 +896,13 @@ White
 ARR
 </td>
 <td style="text-align:right;">
-1.0000000
-</td>
-<td style="text-align:right;">
 2.5320097
 </td>
 <td style="text-align:right;">
-1
+10.0000000
+</td>
+<td style="text-align:right;">
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -813,7 +937,7 @@ ARR
 10.0000000
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -848,7 +972,7 @@ ARR
 10.0000000
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -883,7 +1007,7 @@ ARR
 10.0000000
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -918,7 +1042,7 @@ ARR
 10.0000000
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -953,7 +1077,7 @@ ARR
 10.0000000
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -988,7 +1112,7 @@ ARR
 10.0000000
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -1023,42 +1147,7 @@ ARR
 10.0000000
 </td>
 <td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-41.32254
-</td>
-<td style="text-align:left;">
-Male
-</td>
-<td style="text-align:left;">
-RRMS
-</td>
-<td style="text-align:left;">
-White
-</td>
-<td style="text-align:right;">
-6.099722
-</td>
-</tr>
-<tr>
-<td style="text-align:right;">
-1
-</td>
-<td style="text-align:right;">
-12
-</td>
-<td style="text-align:left;">
-ARR
-</td>
-<td style="text-align:right;">
-2.5320097
-</td>
-<td style="text-align:right;">
-10.0000000
-</td>
-<td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 41.32254
@@ -1125,10 +1214,10 @@ ARR
 0.2332276
 </td>
 <td style="text-align:right;">
-1.0000000
+1.1621344
 </td>
 <td style="text-align:right;">
-0
+1
 </td>
 <td style="text-align:right;">
 31.44477
@@ -1157,10 +1246,10 @@ White
 ARR
 </td>
 <td style="text-align:right;">
-1.0000000
+1.1621344
 </td>
 <td style="text-align:right;">
-1.1621344
+1.5062723
 </td>
 <td style="text-align:right;">
 1
@@ -1192,10 +1281,10 @@ White
 ARR
 </td>
 <td style="text-align:right;">
-1.1621344
+1.5062723
 </td>
 <td style="text-align:right;">
-1.5062723
+2.2481090
 </td>
 <td style="text-align:right;">
 1
@@ -1227,10 +1316,10 @@ White
 ARR
 </td>
 <td style="text-align:right;">
-1.5062723
+2.2481090
 </td>
 <td style="text-align:right;">
-2.2481090
+2.8411302
 </td>
 <td style="text-align:right;">
 1
@@ -1262,10 +1351,10 @@ White
 ARR
 </td>
 <td style="text-align:right;">
-2.2481090
+2.8411302
 </td>
 <td style="text-align:right;">
-2.8411302
+3.0169426
 </td>
 <td style="text-align:right;">
 1
@@ -1297,10 +1386,10 @@ White
 ARR
 </td>
 <td style="text-align:right;">
-2.8411302
+3.0169426
 </td>
 <td style="text-align:right;">
-3.0169426
+3.8417178
 </td>
 <td style="text-align:right;">
 1
@@ -1332,13 +1421,118 @@ White
 ARR
 </td>
 <td style="text-align:right;">
-3.0169426
-</td>
-<td style="text-align:right;">
 3.8417178
 </td>
 <td style="text-align:right;">
+8.0386405
+</td>
+<td style="text-align:right;">
 1
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+9
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+8.0386405
+</td>
+<td style="text-align:right;">
+10.0000000
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+10
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+8.0386405
+</td>
+<td style="text-align:right;">
+10.0000000
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+31.44477
+</td>
+<td style="text-align:left;">
+Female
+</td>
+<td style="text-align:left;">
+RRMS
+</td>
+<td style="text-align:left;">
+White
+</td>
+<td style="text-align:right;">
+3.371547
+</td>
+</tr>
+<tr>
+<td style="text-align:right;">
+2
+</td>
+<td style="text-align:right;">
+11
+</td>
+<td style="text-align:left;">
+ARR
+</td>
+<td style="text-align:right;">
+8.0386405
+</td>
+<td style="text-align:right;">
+10.0000000
+</td>
+<td style="text-align:right;">
+0
 </td>
 <td style="text-align:right;">
 31.44477
@@ -1371,15 +1565,15 @@ number of observations during the total Length Time since study
 start.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_layout_3</span> <span class="op">&lt;-</span> <span class="va">data_layout_1</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
-<span>      DISEASE_COURSE <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">DISEASE_COURSE</span><span class="op">)</span>,</span>
-<span>      COUNT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">STATUS</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, <span class="co"># total number of events </span></span>
-<span>      LENGHT.TIME <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">last</a></span><span class="op">(</span><span class="va">TSTOP</span><span class="op">)</span>,</span>
-<span>      AGE <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">)</span>,</span>
-<span>      SEX <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">SEX</span><span class="op">)</span>,</span>
-<span>      RACE <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">RACE</span><span class="op">)</span>,</span>
-<span>      TIME_SINCE_DIAGNOSIS <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">TIME_SINCE_DIAGNOSIS</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">ID</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/reframe.html" class="external-link">reframe</a></span><span class="op">(</span></span>
+<span>    DISEASE_COURSE <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">DISEASE_COURSE</span><span class="op">)</span>,</span>
+<span>    COUNT <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/numeric.html" class="external-link">as.numeric</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/sum.html" class="external-link">sum</a></span><span class="op">(</span><span class="va">STATUS</span> <span class="op">==</span> <span class="fl">1</span><span class="op">)</span><span class="op">)</span>, <span class="co"># total number of events </span></span>
+<span>    LENGHT.TIME <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">last</a></span><span class="op">(</span><span class="va">TSTOP</span><span class="op">)</span>,</span>
+<span>    AGE <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">AGE</span><span class="op">)</span>,</span>
+<span>    SEX <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">SEX</span><span class="op">)</span>,</span>
+<span>    RACE <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">RACE</span><span class="op">)</span>,</span>
+<span>    TIME_SINCE_DIAGNOSIS <span class="op">=</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/nth.html" class="external-link">first</a></span><span class="op">(</span><span class="va">TIME_SINCE_DIAGNOSIS</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Table 3.</strong> Data layout 3: count-based models.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/kableExtra/man/kbl.html" class="external-link">kbl</a></span><span class="op">(</span><span class="va">data_layout_3</span><span class="op">[</span><span class="fl">1</span><span class="op">:</span><span class="fl">10</span>,<span class="op">]</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -1420,7 +1614,7 @@ TIME_SINCE_DIAGNOSIS
 RRMS
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 <td style="text-align:right;">
 10
@@ -1446,7 +1640,7 @@ White
 RRMS
 </td>
 <td style="text-align:right;">
-9
+8
 </td>
 <td style="text-align:right;">
 10
@@ -1472,7 +1666,7 @@ White
 RRMS
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 <td style="text-align:right;">
 10
@@ -1498,7 +1692,7 @@ No white
 RRMS
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 <td style="text-align:right;">
 10
@@ -1524,7 +1718,7 @@ White
 RRMS
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 <td style="text-align:right;">
 10
@@ -1550,7 +1744,7 @@ No white
 RRMS
 </td>
 <td style="text-align:right;">
-5
+4
 </td>
 <td style="text-align:right;">
 10
@@ -1576,7 +1770,7 @@ White
 RRMS
 </td>
 <td style="text-align:right;">
-4
+3
 </td>
 <td style="text-align:right;">
 10
@@ -1602,7 +1796,7 @@ White
 RRMS
 </td>
 <td style="text-align:right;">
-1
+0
 </td>
 <td style="text-align:right;">
 10
@@ -1628,7 +1822,7 @@ White
 RRMS
 </td>
 <td style="text-align:right;">
-2
+1
 </td>
 <td style="text-align:right;">
 10
@@ -1654,7 +1848,7 @@ White
 RRMS
 </td>
 <td style="text-align:right;">
-5
+4
 </td>
 <td style="text-align:right;">
 10
@@ -1687,7 +1881,7 @@ White
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>03. Descriptive analyses in recurrent event endpoints • revents</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="03. Descriptive analyses in recurrent event endpoints">
 </head>
 <body>
@@ -35,11 +34,25 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home fa-lg"></span></a></li>
-<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Vignettes</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/revents.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/conditional_models.html">06. Conditional models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/count_based_models.html">05. Count-based models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/database_layout.html">04. Data layout for recurrent event analyses</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive_analyses.html">03. Descriptive analyses in recurrent event endpoints</a></li>
+    <li><a class="dropdown-item" href="../articles/event_specific_estimates.html">08. Event-specific estimates</a></li>
+    <li><a class="dropdown-item" href="../articles/marginal_models.html">07. Marginal models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/simulated_data.html">02. Simulation of clinical trial data</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="https://gitlab.par.quinten.io/d.herman/revents"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
       </ul>
 </div>
 
@@ -126,17 +139,12 @@ individual.</p>
 <h2 id="baseline-characteristics">Baseline characteristics<a class="anchor" aria-label="anchor" href="#baseline-characteristics"></a>
 </h2>
 <p>From the total simulated participants, 60.2% (721/1313) had a RRMS
-diagnosis while the remaining 39.8% (522/1313) had a SPMS diagnosis. The
-mean age of the RRMS population is lower than the SPMS population. Most
-of participants were female and white in both groups. The SPMS group
-exhibited a longer mean duration since diagnosis, averaging 24 years.
-Additionally, their mean EDSS score was higher (mean = 6.5).</p>
-<p>Regarding the outcome description for both groups, there were a total
-of 1255 relapses at the end of the follow-up. In this simulation, the
-73.9 (971/1313) of participants had at least more than one relapses,
-with a maximum of 10 relapses observed (Table 1). The proportion of
-events per group started to be different after the 4th event, in which
-the higher number of relapses was observed in the RRMS group.</p>
+diagnosis while the remaining 39.8% (522/1313) had a SPMS diagnosis
+(Table 1). The mean age of the RRMS population is lower than the SPMS
+population. Most of participants were female and white in both groups.
+The SPMS group exhibited a longer mean duration since diagnosis,
+averaging 24 years. Additionally, their mean EDSS score was higher (mean
+= 6.5).</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">one_row_df</span><span class="op">$</span><span class="va">RELAPSE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">one_row_df</span><span class="op">$</span><span class="va">RELAPSE</span><span class="op">)</span></span>
 <span></span>
@@ -147,8 +155,8 @@ the higher number of relapses was observed in the RRMS group.</p>
 <span>                          <span class="va">Sex</span>, </span>
 <span>                          <span class="va">Race</span>,</span>
 <span>                          <span class="va">Time_since_diagnosis</span>,</span>
-<span>                          <span class="va">EDSS_overall</span>,</span>
-<span>                          <span class="va">RELAPSE</span><span class="op">)</span>,</span>
+<span>                          <span class="va">EDSS_overall</span></span>
+<span>                          <span class="op">)</span>,</span>
 <span>              by <span class="op">=</span> <span class="va">mstype</span>,</span>
 <span>              statistic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
 <span>                <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/select_helpers.html" class="external-link">all_continuous</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">"{mean} ({sd})"</span></span>
@@ -158,14 +166,13 @@ the higher number of relapses was observed in the RRMS group.</p>
 <span>        Age <span class="op">=</span> <span class="st">"Age (years)"</span>,</span>
 <span>        Sex <span class="op">=</span> <span class="st">"Sex"</span>,</span>
 <span>        Race <span class="op">=</span> <span class="st">"Race"</span>,</span>
-<span>        EDSS_overall <span class="op">=</span> <span class="st">"EDSS overall"</span>,</span>
+<span>        EDSS_overall <span class="op">=</span> <span class="st">"Baseline EDSS"</span>,</span>
 <span>        mstype <span class="op">=</span> <span class="st">"Disease course"</span>,</span>
-<span>        Time_since_diagnosis <span class="op">=</span> <span class="st">"Time since diagnosis (years)"</span>,</span>
-<span>        RELAPSE <span class="op">=</span> <span class="st">"n° of relapses"</span></span>
+<span>        Time_since_diagnosis <span class="op">=</span> <span class="st">"Time since diagnosis (years)"</span></span>
 <span>        <span class="op">)</span>,</span>
 <span>        missing_text <span class="op">=</span> <span class="st">"(Missing)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/modify.html" class="external-link">modify_header</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"**Characteristics**"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
-<span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/modify.html" class="external-link">modify_caption</a></span><span class="op">(</span><span class="st">"**Baseline characteristics** (N = {N})"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/modify_caption.html" class="external-link">modify_caption</a></span><span class="op">(</span><span class="st">"**Baseline characteristics** (N = {N})"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/bold_italicize_labels_levels.html" class="external-link">bold_labels</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/bold_italicize_labels_levels.html" class="external-link">italicize_levels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <p><strong>Table 1.</strong> Baseline characteristics of study
@@ -173,23 +180,23 @@ population by disease course.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Print the table</span></span>
 <span><span class="va">descriptive_table</span></span></code></pre></div>
-<div id="wlefoodfie" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#wlefoodfie table {
+<div id="mwlefoodfi" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwlefoodfi table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#wlefoodfie thead, #wlefoodfie tbody, #wlefoodfie tfoot, #wlefoodfie tr, #wlefoodfie td, #wlefoodfie th {
+#mwlefoodfi thead, #mwlefoodfi tbody, #mwlefoodfi tfoot, #mwlefoodfi tr, #mwlefoodfi td, #mwlefoodfi th {
   border-style: none;
 }
 
-#wlefoodfie p {
+#mwlefoodfi p {
   margin: 0;
   padding: 0;
 }
 
-#wlefoodfie .gt_table {
+#mwlefoodfi .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -215,12 +222,12 @@ population by disease course.</p>
   border-left-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_caption {
+#mwlefoodfi .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#wlefoodfie .gt_title {
+#mwlefoodfi .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -232,7 +239,7 @@ population by disease course.</p>
   border-bottom-width: 0;
 }
 
-#wlefoodfie .gt_subtitle {
+#mwlefoodfi .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -244,7 +251,7 @@ population by disease course.</p>
   border-top-width: 0;
 }
 
-#wlefoodfie .gt_heading {
+#mwlefoodfi .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -256,13 +263,13 @@ population by disease course.</p>
   border-right-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_bottom_border {
+#mwlefoodfi .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_col_headings {
+#mwlefoodfi .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -277,7 +284,7 @@ population by disease course.</p>
   border-right-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_col_heading {
+#mwlefoodfi .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -297,7 +304,7 @@ population by disease course.</p>
   overflow-x: hidden;
 }
 
-#wlefoodfie .gt_column_spanner_outer {
+#mwlefoodfi .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -309,15 +316,15 @@ population by disease course.</p>
   padding-right: 4px;
 }
 
-#wlefoodfie .gt_column_spanner_outer:first-child {
+#mwlefoodfi .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#wlefoodfie .gt_column_spanner_outer:last-child {
+#mwlefoodfi .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#wlefoodfie .gt_column_spanner {
+#mwlefoodfi .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -329,11 +336,11 @@ population by disease course.</p>
   width: 100%;
 }
 
-#wlefoodfie .gt_spanner_row {
+#mwlefoodfi .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#wlefoodfie .gt_group_heading {
+#mwlefoodfi .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -359,7 +366,7 @@ population by disease course.</p>
   text-align: left;
 }
 
-#wlefoodfie .gt_empty_group_heading {
+#mwlefoodfi .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -374,15 +381,15 @@ population by disease course.</p>
   vertical-align: middle;
 }
 
-#wlefoodfie .gt_from_md > :first-child {
+#mwlefoodfi .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#wlefoodfie .gt_from_md > :last-child {
+#mwlefoodfi .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#wlefoodfie .gt_row {
+#mwlefoodfi .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -401,7 +408,7 @@ population by disease course.</p>
   overflow-x: hidden;
 }
 
-#wlefoodfie .gt_stub {
+#mwlefoodfi .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -414,7 +421,7 @@ population by disease course.</p>
   padding-right: 5px;
 }
 
-#wlefoodfie .gt_stub_row_group {
+#mwlefoodfi .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -428,15 +435,15 @@ population by disease course.</p>
   vertical-align: top;
 }
 
-#wlefoodfie .gt_row_group_first td {
+#mwlefoodfi .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#wlefoodfie .gt_row_group_first th {
+#mwlefoodfi .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#wlefoodfie .gt_summary_row {
+#mwlefoodfi .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -446,16 +453,16 @@ population by disease course.</p>
   padding-right: 5px;
 }
 
-#wlefoodfie .gt_first_summary_row {
+#mwlefoodfi .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_first_summary_row.thick {
+#mwlefoodfi .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#wlefoodfie .gt_last_summary_row {
+#mwlefoodfi .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -465,7 +472,7 @@ population by disease course.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_grand_summary_row {
+#mwlefoodfi .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -475,7 +482,7 @@ population by disease course.</p>
   padding-right: 5px;
 }
 
-#wlefoodfie .gt_first_grand_summary_row {
+#mwlefoodfi .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -485,7 +492,7 @@ population by disease course.</p>
   border-top-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_last_grand_summary_row_top {
+#mwlefoodfi .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -495,11 +502,11 @@ population by disease course.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_striped {
+#mwlefoodfi .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#wlefoodfie .gt_table_body {
+#mwlefoodfi .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -508,7 +515,7 @@ population by disease course.</p>
   border-bottom-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_footnotes {
+#mwlefoodfi .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -522,7 +529,7 @@ population by disease course.</p>
   border-right-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_footnote {
+#mwlefoodfi .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -531,7 +538,7 @@ population by disease course.</p>
   padding-right: 5px;
 }
 
-#wlefoodfie .gt_sourcenotes {
+#mwlefoodfi .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -545,7 +552,7 @@ population by disease course.</p>
   border-right-color: #D3D3D3;
 }
 
-#wlefoodfie .gt_sourcenote {
+#mwlefoodfi .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -553,84 +560,86 @@ population by disease course.</p>
   padding-right: 5px;
 }
 
-#wlefoodfie .gt_left {
+#mwlefoodfi .gt_left {
   text-align: left;
 }
 
-#wlefoodfie .gt_center {
+#mwlefoodfi .gt_center {
   text-align: center;
 }
 
-#wlefoodfie .gt_right {
+#mwlefoodfi .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#wlefoodfie .gt_font_normal {
+#mwlefoodfi .gt_font_normal {
   font-weight: normal;
 }
 
-#wlefoodfie .gt_font_bold {
+#mwlefoodfi .gt_font_bold {
   font-weight: bold;
 }
 
-#wlefoodfie .gt_font_italic {
+#mwlefoodfi .gt_font_italic {
   font-style: italic;
 }
 
-#wlefoodfie .gt_super {
+#mwlefoodfi .gt_super {
   font-size: 65%;
 }
 
-#wlefoodfie .gt_footnote_marks {
+#mwlefoodfi .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#wlefoodfie .gt_asterisk {
+#mwlefoodfi .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#wlefoodfie .gt_indent_1 {
+#mwlefoodfi .gt_indent_1 {
   text-indent: 5px;
 }
 
-#wlefoodfie .gt_indent_2 {
+#mwlefoodfi .gt_indent_2 {
   text-indent: 10px;
 }
 
-#wlefoodfie .gt_indent_3 {
+#mwlefoodfi .gt_indent_3 {
   text-indent: 15px;
 }
 
-#wlefoodfie .gt_indent_4 {
+#mwlefoodfi .gt_indent_4 {
   text-indent: 20px;
 }
 
-#wlefoodfie .gt_indent_5 {
+#mwlefoodfi .gt_indent_5 {
   text-indent: 25px;
 }
 
-#wlefoodfie .katex-display {
+#mwlefoodfi .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#wlefoodfie div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mwlefoodfi div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
 <table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
 <caption><span class="gt_from_md"><strong>Baseline characteristics</strong> (N = 1313)</span></caption>
   <thead><tr class="gt_col_headings">
-<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;Characteristics&lt;/strong&gt;&lt;/span&gt;"><span class="gt_from_md"><strong>Characteristics</strong></span></th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;RRMS&lt;/strong&gt;, N = 791&lt;/span&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;">
-<span class="gt_from_md"><strong>RRMS</strong>, N = 791</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class="gt_from_md"><strong>Characteristics</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1">
+<span class="gt_from_md"><strong>RRMS</strong><br>
+N = 791</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span>
 </th>
-      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="&lt;span class='gt_from_md'&gt;&lt;strong&gt;SPMS&lt;/strong&gt;, N = 522&lt;/span&gt;&lt;span class=&quot;gt_footnote_marks&quot; style=&quot;white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;&quot;&gt;&lt;sup&gt;1&lt;/sup&gt;&lt;/span&gt;">
-<span class="gt_from_md"><strong>SPMS</strong>, N = 522</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2">
+<span class="gt_from_md"><strong>SPMS</strong><br>
+N = 522</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span>
 </th>
     </tr></thead>
 <tbody class="gt_table_body">
@@ -675,12 +684,519 @@ population by disease course.</p>
 <td headers="stat_2" class="gt_row gt_center">24.0 (31.7)</td>
 </tr>
 <tr>
-<td headers="label" class="gt_row gt_left" style="font-weight: bold;">EDSS overall</td>
+<td headers="label" class="gt_row gt_left" style="font-weight: bold;">Baseline EDSS</td>
 <td headers="stat_1" class="gt_row gt_center">3.0 (3.5)</td>
 <td headers="stat_2" class="gt_row gt_center">6.5 (2.5)</td>
 </tr>
+</tbody>
+<tfoot class="gt_footnotes"><tr>
+<td class="gt_footnote" colspan="3">
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class="gt_from_md">Mean (SD); n (%)</span>
+</td>
+    </tr></tfoot>
+</table>
+</div>
+</div>
+<div class="section level2">
+<h2 id="outcome-description-during-follow-up-period-">Outcome description during follow-up period.<a class="anchor" aria-label="anchor" href="#outcome-description-during-follow-up-period-"></a>
+</h2>
+<p>Regarding the outcome description for both groups, there were a total
+of 1255 relapses at the end of the follow-up. In this simulation, the
+73.9 (971/1313) of participants had at least more than one relapses,
+with a maximum of 10 relapses observed (Table 2). The proportion of
+events per group started to be different after the 4th event, in which
+the higher number of relapses was observed in the RRMS group.</p>
+<p><strong>Table 2.</strong> Distribution of relapse events by type of
+disease course during the follow-up period.</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">one_row_df</span><span class="op">$</span><span class="va">RELAPSE</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/factor.html" class="external-link">factor</a></span><span class="op">(</span><span class="va">one_row_df</span><span class="op">$</span><span class="va">RELAPSE</span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">relapse_fu_table</span> <span class="op">&lt;-</span> </span>
+<span>  <span class="va">one_row_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://rdrr.io/r/base/droplevels.html" class="external-link">droplevels</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>  <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/tbl_summary.html" class="external-link">tbl_summary</a></span><span class="op">(</span>include <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>    <span class="va">RELAPSE</span><span class="op">)</span>,</span>
+<span>              by <span class="op">=</span> <span class="va">mstype</span>,</span>
+<span>              statistic <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>                <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/select_helpers.html" class="external-link">all_continuous</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="st">"{mean} ({sd})"</span></span>
+<span>              <span class="op">)</span>,</span>
+<span>              digits <span class="op">=</span> <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/select_helpers.html" class="external-link">all_continuous</a></span><span class="op">(</span><span class="op">)</span> <span class="op">~</span> <span class="fl">1</span>,</span>
+<span>                    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span>
+<span>        RELAPSE <span class="op">=</span> <span class="st">"Number of relapses"</span></span>
+<span>        <span class="op">)</span>,</span>
+<span>        missing_text <span class="op">=</span> <span class="st">"(Missing)"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/modify.html" class="external-link">modify_header</a></span><span class="op">(</span>label <span class="op">=</span> <span class="st">"**Characteristics**"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/modify_caption.html" class="external-link">modify_caption</a></span><span class="op">(</span><span class="st">"**Baseline characteristics** (N = {N})"</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/bold_italicize_labels_levels.html" class="external-link">bold_labels</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
+<span>    <span class="fu"><a href="https://www.danieldsjoberg.com/gtsummary/reference/bold_italicize_labels_levels.html" class="external-link">italicize_levels</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Print the table</span></span>
+<span><span class="va">relapse_fu_table</span></span></code></pre></div>
+<div id="djagfvsybh" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#djagfvsybh table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#djagfvsybh thead, #djagfvsybh tbody, #djagfvsybh tfoot, #djagfvsybh tr, #djagfvsybh td, #djagfvsybh th {
+  border-style: none;
+}
+
+#djagfvsybh p {
+  margin: 0;
+  padding: 0;
+}
+
+#djagfvsybh .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#djagfvsybh .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#djagfvsybh .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#djagfvsybh .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#djagfvsybh .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#djagfvsybh .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#djagfvsybh .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#djagfvsybh .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#djagfvsybh .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#djagfvsybh .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#djagfvsybh .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#djagfvsybh .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#djagfvsybh .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#djagfvsybh .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#djagfvsybh .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djagfvsybh .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#djagfvsybh .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#djagfvsybh .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#djagfvsybh .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djagfvsybh .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#djagfvsybh .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djagfvsybh .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#djagfvsybh .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djagfvsybh .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#djagfvsybh .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#djagfvsybh .gt_left {
+  text-align: left;
+}
+
+#djagfvsybh .gt_center {
+  text-align: center;
+}
+
+#djagfvsybh .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#djagfvsybh .gt_font_normal {
+  font-weight: normal;
+}
+
+#djagfvsybh .gt_font_bold {
+  font-weight: bold;
+}
+
+#djagfvsybh .gt_font_italic {
+  font-style: italic;
+}
+
+#djagfvsybh .gt_super {
+  font-size: 65%;
+}
+
+#djagfvsybh .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#djagfvsybh .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#djagfvsybh .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#djagfvsybh .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#djagfvsybh .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#djagfvsybh .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#djagfvsybh .gt_indent_5 {
+  text-indent: 25px;
+}
+
+#djagfvsybh .katex-display {
+  display: inline-flex !important;
+  margin-bottom: 0.75em !important;
+}
+
+#djagfvsybh div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+  height: 0px !important;
+}
+</style>
+<table class="table gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+<caption><span class="gt_from_md"><strong>Baseline characteristics</strong> (N = 1313)</span></caption>
+  <thead><tr class="gt_col_headings">
+<th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="label"><span class="gt_from_md"><strong>Characteristics</strong></span></th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_1">
+<span class="gt_from_md"><strong>RRMS</strong><br>
+N = 791</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span>
+</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_center" rowspan="1" colspan="1" scope="col" id="stat_2">
+<span class="gt_from_md"><strong>SPMS</strong><br>
+N = 522</span><span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span>
+</th>
+    </tr></thead>
+<tbody class="gt_table_body">
 <tr>
-<td headers="label" class="gt_row gt_left" style="font-weight: bold;">n° of relapses</td>
+<td headers="label" class="gt_row gt_left" style="font-weight: bold;">Number of relapses</td>
 <td headers="stat_1" class="gt_row gt_center"><br></td>
 <td headers="stat_2" class="gt_row gt_center"><br></td>
 </tr>
@@ -742,14 +1258,14 @@ population by disease course.</p>
 </tbody>
 <tfoot class="gt_footnotes"><tr>
 <td class="gt_footnote" colspan="3">
-<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height: 0;"><sup>1</sup></span> <span class="gt_from_md">Mean (SD); n (%)</span>
+<span class="gt_footnote_marks" style="white-space:nowrap;font-style:italic;font-weight:normal;line-height:0;"><sup>1</sup></span> <span class="gt_from_md">n (%)</span>
 </td>
     </tr></tfoot>
 </table>
 </div>
 <p><strong>Figure 1.</strong> Distribution of number of relapses in
 study population</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co">### Number of relpases bar chart ###</span></span>
 <span><span class="va">relapse_counts_plot</span> <span class="op">&lt;-</span> <span class="va">one_row_df</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">group_by</a></span><span class="op">(</span><span class="va">RELAPSE</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -771,12 +1287,11 @@ study population</p>
 <span>        axis.title.y <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">11</span><span class="op">)</span><span class="op">)</span> </span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">number.relapses</span><span class="op">)</span></span></code></pre></div>
-<p><img src="descriptive_analyses_files/figure-html/unnamed-chunk-8-1.png" width="700"></p>
+<p><img src="descriptive_analyses_files/figure-html/unnamed-chunk-10-1.png" width="700"></p>
 <p>Here we can see that general distribution of relapses in the study
-population, in order to have a first idea of the data distribution. The
-majority of participants had 2 relapse at the end of the follow-up and
-the proportion of patients with more than 2 relapses decreased as the
-number of relapses increased.</p>
+population. The majority of participants had 2 relapse at the end of the
+follow-up and the proportion of patients with more than 2 relapses
+decreased as the number of relapses increased.</p>
 <p>An improved way to illustrate the recurrent events, is by using the
 plotEvent and Recur functions from <em>reReg</em> and <em>Reda</em>
 packages. Recur package provides several types of plots that are
@@ -785,7 +1300,7 @@ as it gives a better understanding and finding patterns in recurrent
 event data.</p>
 <p><strong>Figure 2.</strong> Recurrent relapses during
 following-up.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">comparison_group</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/reReg/man/plotEvents.html" class="external-link">plotEvents</a></span><span class="op">(</span><span class="fu"><a href="https://wwenjie.org/reda/reference/Recur.html" class="external-link">Recur</a></span><span class="op">(</span></span>
 <span>  <span class="va">time</span>, <span class="va">id</span>, <span class="va">status</span><span class="op">)</span> <span class="op">~</span> <span class="va">mstype</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">df_revents</span><span class="op">)</span></span>
@@ -810,7 +1325,7 @@ following-up.</p>
 <span>    strip.text <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">8</span><span class="op">)</span>,</span>
 <span>    panel.border <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_rect</a></span><span class="op">(</span>color <span class="op">=</span> <span class="st">"black"</span>, fill <span class="op">=</span> <span class="cn">NA</span>, linewidth <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
-<p><img src="descriptive_analyses_files/figure-html/unnamed-chunk-9-1.png" width="700"></p>
+<p><img src="descriptive_analyses_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 <p><strong>Mean cumulative function</strong></p>
 <p>To describe recurrent event data was also estimated the mean
 cumulative function (MCF), which is recommended for illustrating
@@ -822,11 +1337,11 @@ since the start of follow-up.</em></p>
 (df_revents) or data layout 1 (<a href="./database_layout.html">database
 layout section</a>) as it only will need the event time or TSTOP,
 respectively.</p>
-<p>Overall, figure 1 shows how the cumulative rates of relapses in RRMS
+<p>Overall, figure 3 shows how the cumulative rates of relapses in RRMS
 and SPMS groups varies over time. The x-axis is the time since study
 entry in years and the y-axis represents the average number of relapses
 that an individual had experienced during follow-up.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Load data layout corresponding to the third layout</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/data.html" class="external-link">data</a></span><span class="op">(</span><span class="st">"data_layout_1"</span>, package <span class="op">=</span> <span class="st">"revents"</span><span class="op">)</span></span>
 <span><span class="va">data_layout_1</span> <span class="op">&lt;-</span> <span class="fu">revents</span><span class="fu">::</span><span class="va"><a href="../reference/data_layout_1.html">data_layout_1</a></span></span></code></pre></div>
@@ -841,12 +1356,12 @@ the relapse rates over time, which is useful for several recurrent event
 models’ assumptions. In this case, <em>it can be also seen that
 cumulative mean of relapses are approximately linear in both groups,
 suggesting a constant rates of events over time</em>.</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># origin: time origin of all subjects (0 default)</span></span>
 <span><span class="co"># recur function from reda packagem</span></span>
 <span><span class="co"># check none to avoid errors (subjects having events at or after censoring)</span></span>
 <span><span class="va">mcf.relapse</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://wwenjie.org/reda/reference/mcf.html" class="external-link">mcf</a></span><span class="op">(</span><span class="fu"><a href="https://wwenjie.org/reda/reference/Recur.html" class="external-link">Recur</a></span><span class="op">(</span><span class="va">TSTOP</span>, <span class="va">ID</span>, <span class="va">STATUS</span>, origin <span class="op">=</span> <span class="fl">0</span>, check <span class="op">=</span> <span class="st">"none"</span><span class="op">)</span> <span class="op">~</span> <span class="va">DISEASE_COURSE</span>, data <span class="op">=</span> <span class="va">data_layout_1</span><span class="op">)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mcf_plot.relapses</span> <span class="op">&lt;-</span></span>
 <span>  <span class="fu"><a href="https://rdrr.io/r/graphics/plot.default.html" class="external-link">plot</a></span><span class="op">(</span></span>
 <span>    <span class="va">mcf.relapse</span>,</span>
@@ -863,13 +1378,14 @@ suggesting a constant rates of events over time</em>.</p>
 <span>                 axis.title.x <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span>,</span>
 <span>                 axis.title.y <span class="op">=</span> <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/element.html" class="external-link">element_text</a></span><span class="op">(</span>size <span class="op">=</span> <span class="fl">12</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span> </span>
 <span>  <span class="fu">ggplot2</span><span class="fu">::</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_continuous.html" class="external-link">scale_y_continuous</a></span><span class="op">(</span>breaks <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/seq.html" class="external-link">seq</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span>, by <span class="op">=</span> <span class="fl">1</span><span class="op">)</span>, limits <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<p><strong>Figure 2.</strong> Mean Cumulative Function for ARR by
+<p><strong>Figure 3.</strong> Mean Cumulative Function for ARR by
 disease course.</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">mcf_plot.relapses</span></span></code></pre></div>
-<p><img src="descriptive_analyses_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
+<p><img src="descriptive_analyses_files/figure-html/unnamed-chunk-15-1.png" width="700"></p>
 </div>
-  </main>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside>
 </div>
 
 
@@ -879,7 +1395,7 @@ disease course.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

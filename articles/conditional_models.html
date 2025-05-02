@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>06. Conditional models in recurrent events • revents</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="06. Conditional models in recurrent events">
 </head>
 <body>
@@ -35,11 +34,25 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home fa-lg"></span></a></li>
-<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Vignettes</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/revents.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/conditional_models.html">06. Conditional models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/count_based_models.html">05. Count-based models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/database_layout.html">04. Data layout for recurrent event analyses</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive_analyses.html">03. Descriptive analyses in recurrent event endpoints</a></li>
+    <li><a class="dropdown-item" href="../articles/event_specific_estimates.html">08. Event-specific estimates</a></li>
+    <li><a class="dropdown-item" href="../articles/marginal_models.html">07. Marginal models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/simulated_data.html">02. Simulation of clinical trial data</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="https://gitlab.par.quinten.io/d.herman/revents"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
       </ul>
 </div>
 
@@ -97,20 +110,21 @@ the subset of SEVENT == 1.</p>
 <span><span class="co">#&gt;     AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS, data = subset(data_layout_1, </span></span>
 <span><span class="co">#&gt;     SEVENT == 1), ties = "breslow")</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;                            coef  exp(coef)   se(coef)      z        p</span></span>
-<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.5065415  0.6025760  0.1169950 -4.330 1.49e-05</span></span>
-<span><span class="co">#&gt; AGE                   0.0001745  1.0001746  0.0045354  0.038   0.9693</span></span>
-<span><span class="co">#&gt; SEXMale               0.1992437  1.2204793  0.0883283  2.256   0.0241</span></span>
-<span><span class="co">#&gt; RACEWhite            -0.1131750  0.8929943  0.1414812 -0.800   0.4238</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0032136  1.0032188  0.0019227  1.671   0.0946</span></span>
+<span><span class="co">#&gt;                           coef exp(coef)  se(coef)      z        p</span></span>
+<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.412918  0.661717  0.077685 -5.315 1.06e-07</span></span>
+<span><span class="co">#&gt; AGE                   0.001154  1.001155  0.003051  0.378   0.7053</span></span>
+<span><span class="co">#&gt; SEXMale               0.096333  1.101125  0.061252  1.573   0.1158</span></span>
+<span><span class="co">#&gt; RACEWhite             0.052987  1.054416  0.108670  0.488   0.6258</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.002447  1.002450  0.001475  1.659   0.0971</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Likelihood ratio test=33.5  on 5 df, p=2.997e-06</span></span>
-<span><span class="co">#&gt; n= 1313, number of events= 565</span></span></code></pre></div>
-<p>Here it can be seen that the CoxPH model gives an decreasing risk of
-relapses of 40% in the SPMS group compared with the RRMS group. It is
-important to consider that this model is ignoring all the other events
-that precede the 1st events.</p>
-<p>In order to account for them, we can use recurrent events models:</p>
+<span><span class="co">#&gt; Likelihood ratio test=41.48  on 5 df, p=7.489e-08</span></span>
+<span><span class="co">#&gt; n= 1313, number of events= 1255</span></span></code></pre></div>
+<p>Here it can be seen that the CoxPH model gives a significant
+decreasing risk of relapses of 34% (HR = 0.66) in the SPMS group
+compared with the RRMS group. It is important to consider that this
+model is ignoring all the other events that precede the 1st events.</p>
+<p>In order to account for them, we can use recurrent events
+approaches:</p>
 </div>
 <div class="section level4">
 <h4 id="andersen-gill-ag-model">
@@ -127,14 +141,14 @@ constant over time.</p>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 5 × 7</span></span></span>
 <span><span class="co">#&gt;   term                 estimate std.error statistic  p.value conf.low conf.high</span></span>
 <span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DISEASE_COURSESPMS      0.564  0.040<span style="text-decoration: underline;">4</span>     -<span style="color: #BB0000;">14.2</span>   1.44<span style="color: #949494;">e</span><span style="color: #BB0000;">-45</span>    0.522     0.611</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AGE                     1.00   0.001<span style="text-decoration: underline;">52</span>      1.88  6.02<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>    1.00      1.01 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> SEXMale                 0.980  0.030<span style="text-decoration: underline;">5</span>      -<span style="color: #BB0000;">0.667</span> 5.05<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.923     1.04 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> RACEWhite               1.12   0.052<span style="text-decoration: underline;">5</span>       2.11  3.47<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>    1.01      1.24 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> TIME_SINCE_DIAGNOSIS    1.00   0.000<span style="text-decoration: underline;">759</span>     1.50  1.35<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    1.00      1.00</span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DISEASE_COURSESPMS      0.450  0.048<span style="text-decoration: underline;">6</span>     -<span style="color: #BB0000;">16.4</span>   1.12<span style="color: #949494;">e</span><span style="color: #BB0000;">-60</span>    0.409     0.495</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AGE                     1.00   0.001<span style="text-decoration: underline;">76</span>      2.17  2.98<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>    1.00      1.01 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> SEXMale                 0.972  0.035<span style="text-decoration: underline;">5</span>      -<span style="color: #BB0000;">0.788</span> 4.31<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.907     1.04 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> RACEWhite               1.16   0.060<span style="text-decoration: underline;">8</span>       2.41  1.61<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>    1.03      1.30 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> TIME_SINCE_DIAGNOSIS    1.00   0.000<span style="text-decoration: underline;">910</span>     1.86  6.32<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>    1.00      1.00</span></span></code></pre></div>
 <p>Adjusting for covariates (in this case there are no time-dependent
 covariates) and considering all events, the AG model shows that the risk
-of relapse in the SPMS group is 44% lower than in the RRMS group.</p>
+of relapse in the SPMS group is 56% lower than in the RRMS group.</p>
 <p><em>It is important to mention that the AG model can also be fitted
 with a robust = TRUE to take into account correlations among the events
 and provides robust standard errors (not applied in this
@@ -160,19 +174,19 @@ between events while obtaining the overall effect.</p>
 <span><span class="co">#&gt;     AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS + strata(STATUS), </span></span>
 <span><span class="co">#&gt;     data = data_layout_1)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;                            coef  exp(coef)   se(coef)       z       p</span></span>
-<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.5459158  0.5793110  0.0401215 -13.607 &lt; 2e-16</span></span>
-<span><span class="co">#&gt; AGE                   0.0028041  1.0028080  0.0015296   1.833 0.06678</span></span>
-<span><span class="co">#&gt; SEXMale              -0.0427495  0.9581514  0.0305230  -1.401 0.16134</span></span>
-<span><span class="co">#&gt; RACEWhite             0.1621498  1.1760364  0.0525550   3.085 0.00203</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0008012  1.0008015  0.0007341   1.091 0.27512</span></span>
+<span><span class="co">#&gt;                            coef  exp(coef)   se(coef)      z        p</span></span>
+<span><span class="co">#&gt; DISEASE_COURSESPMS   -3.980e-01  6.716e-01  4.864e-02 -8.184 2.75e-16</span></span>
+<span><span class="co">#&gt; AGE                   2.340e-03  1.002e+00  1.758e-03  1.331  0.18325</span></span>
+<span><span class="co">#&gt; SEXMale               4.159e-06  1.000e+00  3.553e-02  0.000  0.99991</span></span>
+<span><span class="co">#&gt; RACEWhite            -8.101e-02  9.222e-01  6.093e-02 -1.330  0.18368</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  2.308e-03  1.002e+00  8.847e-04  2.609  0.00908</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Likelihood ratio test=272.3  on 5 df, p=&lt; 2.2e-16</span></span>
-<span><span class="co">#&gt; n= 6347, number of events= 5092</span></span></code></pre></div>
+<span><span class="co">#&gt; Likelihood ratio test=86.57  on 5 df, p=&lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; n= 5092, number of events= 3779</span></span></code></pre></div>
 <p>When analyses are performed based on restricted risk sets (the risk
 set only involves those with the same number of previous events) with a
-calendar time scale, the PWP gives a HR:0.57 for the SPMS group compared
-with the RRMS group.</p>
+calendar time scale, the PWP gives a HR: 0.67 for the SPMS group
+compared with the RRMS group.</p>
 </div>
 <div class="section level4">
 <h4 id="prentice-williams-peterson-pwp-gt-model-overall-effect">
@@ -195,16 +209,16 @@ first event).</p>
 <span><span class="co">#&gt; coxph(formula = Surv(TGAP, STATUS) ~ DISEASE_COURSE + AGE + SEX + </span></span>
 <span><span class="co">#&gt;     RACE + TIME_SINCE_DIAGNOSIS + strata(STATUS), data = data_layout_1)</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt;                            coef  exp(coef)   se(coef)       z       p</span></span>
-<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.5636383  0.5691346  0.0408425 -13.800 &lt; 2e-16</span></span>
-<span><span class="co">#&gt; AGE                   0.0028712  1.0028754  0.0015265   1.881 0.05998</span></span>
-<span><span class="co">#&gt; SEXMale              -0.0327096  0.9678196  0.0305313  -1.071 0.28401</span></span>
-<span><span class="co">#&gt; RACEWhite             0.1422456  1.1528598  0.0526099   2.704 0.00686</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0011251  1.0011257  0.0007544   1.491 0.13586</span></span>
+<span><span class="co">#&gt;                            coef  exp(coef)   se(coef)      z       p</span></span>
+<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.4705481  0.6246598  0.0489033 -9.622 &lt; 2e-16</span></span>
+<span><span class="co">#&gt; AGE                   0.0026107  1.0026141  0.0017573  1.486 0.13737</span></span>
+<span><span class="co">#&gt; SEXMale               0.0071008  1.0071261  0.0355375  0.200 0.84163</span></span>
+<span><span class="co">#&gt; RACEWhite            -0.0819665  0.9213029  0.0609020 -1.346 0.17834</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0024122  1.0024151  0.0008833  2.731 0.00632</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Likelihood ratio test=271.4  on 5 df, p=&lt; 2.2e-16</span></span>
-<span><span class="co">#&gt; n= 6347, number of events= 5092</span></span></code></pre></div>
-<p>When gap time scale is used, the PWP model gives a HR:0.56 for the
+<span><span class="co">#&gt; Likelihood ratio test=121.9  on 5 df, p=&lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; n= 5092, number of events= 3779</span></span></code></pre></div>
+<p>When gap time scale is used, the PWP model gives a HR:0.62 for the
 SPMS group compared with the RRMS group.</p>
 </div>
 <div class="section level4">
@@ -221,59 +235,22 @@ event times.</p>
 <span></span>
 <span><span class="fu"><a href="https://generics.r-lib.org/reference/tidy.html" class="external-link">tidy</a></span><span class="op">(</span><span class="va">frailty.relapses</span>, exp <span class="op">=</span> <span class="cn">TRUE</span>, conf.int <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 7</span></span></span>
-<span><span class="co">#&gt;   term                 estimate std.error statistic  p.value conf.low conf.high</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DISEASE_COURSESPMS      0.774  0.040<span style="text-decoration: underline;">4</span>   40.0      2.57<span style="color: #949494;">e</span><span style="color: #BB0000;">-10</span>    0.715     0.838</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AGE                     1.00   0.001<span style="text-decoration: underline;">52</span>   0.156    6.93<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.998     1.00 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> SEXMale                 0.999  0.030<span style="text-decoration: underline;">5</span>    0.000<span style="text-decoration: underline;">679</span> 9.79<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.941     1.06 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> RACEWhite               1.01   0.052<span style="text-decoration: underline;">5</span>    0.043<span style="text-decoration: underline;">1</span>   8.35<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.912     1.12 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> TIME_SINCE_DIAGNOSIS    1.00   0.000<span style="text-decoration: underline;">761</span>  2.17     1.40<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    1.00      1.00 </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> frailty(ID)            <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>         0.000<span style="text-decoration: underline;">620</span> 8.54<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
+<span><span class="co">#&gt;   term                 estimate std.error  statistic  p.value conf.low conf.high</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                   <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> DISEASE_COURSESPMS      0.707  0.048<span style="text-decoration: underline;">6</span>   50.8       1.02<span style="color: #949494;">e</span><span style="color: #BB0000;">-12</span>    0.643     0.778</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> AGE                     1.00   0.001<span style="text-decoration: underline;">75</span>   0.155     6.94<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.997     1.00 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> SEXMale                 1.00   0.035<span style="text-decoration: underline;">5</span>    0.000<span style="text-decoration: underline;">036</span>6 9.95<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.933     1.07 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> RACEWhite               1.01   0.060<span style="text-decoration: underline;">8</span>    0.027<span style="text-decoration: underline;">1</span>    8.69<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>    0.897     1.14 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> TIME_SINCE_DIAGNOSIS    1.00   0.000<span style="text-decoration: underline;">913</span>  3.23      7.21<span style="color: #949494;">e</span><span style="color: #BB0000;">- 2</span>    1.00      1.00 </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> frailty(ID)            <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>         0.000<span style="text-decoration: underline;">590</span>  8.55<span style="color: #949494;">e</span><span style="color: #BB0000;">- 1</span>   <span style="color: #BB0000;">NA</span>        <span style="color: #BB0000;">NA</span></span></span></code></pre></div>
 <p>Conditional on the unmeasured heterogeneity and covariates, the
-frailty model indicates that the SPMS group had a reducing risk of 23%
-than the RRMS (HR: 0.77; 95% CI: 0.71, 0.83).</p>
+frailty model indicates that the SPMS group had a reducing risk of 30%
+than the RRMS (HR: 0.70).</p>
 <p>In order to verify if the use of frailty models is justified in our
 study, it is possible to use the <em>emfrail</em> function from
 <em>frailtyEM</em> package for getting the frailty variance or Kendall’s
-tau. A variance close to 0 means no heterogeneity between patients.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">frailty_var</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/pkg/frailtyEM/man/emfrail.html" class="external-link">emfrail</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/pkg/survival/man/Surv.html" class="external-link">Surv</a></span><span class="op">(</span><span class="va">TSTOP</span>, <span class="va">STATUS</span><span class="op">)</span> <span class="op">~</span> <span class="fu"><a href="https://rdrr.io/pkg/survival/man/cluster.html" class="external-link">cluster</a></span><span class="op">(</span><span class="va">ID</span><span class="op">)</span> <span class="op">+</span> <span class="va">DISEASE_COURSE</span></span>
-<span>                       <span class="op">+</span> <span class="va">AGE</span> <span class="op">+</span> <span class="va">SEX</span> <span class="op">+</span> <span class="va">RACE</span> <span class="op">+</span> <span class="va">TIME_SINCE_DIAGNOSIS</span>, </span>
-<span>                       data <span class="op">=</span> <span class="va">data_layout_1</span><span class="op">)</span> </span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">frailty_var</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Call: </span></span>
-<span><span class="co">#&gt; emfrail(formula = Surv(TSTOP, STATUS) ~ cluster(ID) + DISEASE_COURSE + </span></span>
-<span><span class="co">#&gt;     AGE + SEX + RACE + TIME_SINCE_DIAGNOSIS, data = data_layout_1)</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Regression coefficients:</span></span>
-<span><span class="co">#&gt;                           coef exp(coef)  se(coef)         z    p</span></span>
-<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.255557  0.774485  0.040421 -6.322323 0.00</span></span>
-<span><span class="co">#&gt; AGE                   0.000600  1.000600  0.001519  0.394967 0.69</span></span>
-<span><span class="co">#&gt; SEXMale              -0.000795  0.999205  0.030528 -0.026039 0.98</span></span>
-<span><span class="co">#&gt; RACEWhite             0.010910  1.010969  0.052527  0.207696 0.84</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.001122  1.001123  0.000761  1.474168 0.14</span></span>
-<span><span class="co">#&gt; Estimated distribution: gamma / left truncation: FALSE </span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Fit summary:</span></span>
-<span><span class="co">#&gt; Commenges-Andersen test for heterogeneity: p-val  1.55e-145 </span></span>
-<span><span class="co">#&gt; no-frailty Log-likelihood: -39801.63 </span></span>
-<span><span class="co">#&gt; Log-likelihood: -39801.63 </span></span>
-<span><span class="co">#&gt; LRT: 1/2 * pchisq(0), p-val&gt;0.5</span></span>
-<span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Frailty summary:</span></span>
-<span><span class="co">#&gt;                    estimate lower 95% upper 95%</span></span>
-<span><span class="co">#&gt; Var[Z]                 0.00     0.000     0.001</span></span>
-<span><span class="co">#&gt; Kendall's tau          0.00     0.000     0.001</span></span>
-<span><span class="co">#&gt; Median concordance     0.00     0.000     0.000</span></span>
-<span><span class="co">#&gt; E[logZ]                0.00    -0.001     0.000</span></span>
-<span><span class="co">#&gt; Var[logZ]              0.00     0.000     0.001</span></span>
-<span><span class="co">#&gt; theta              38640.84   998.881       Inf</span></span>
-<span><span class="co">#&gt; Confidence intervals based on the likelihood function</span></span></code></pre></div>
-<p>In our example, there is no heterogeneity, so the use of frailty
-models would not be justified. The differences detected in the frailty
-model estimates with other conditional models may be due to model
-assumptions rather than heterogeneity.</p>
+tau. A variance close to 0 means no heterogeneity between patients and
+that a frailty model would not be justified (<a href="https://www.jstatsoft.org/article/view/v090i07" class="external-link uri">https://www.jstatsoft.org/article/view/v090i07</a>).</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -286,7 +263,7 @@ assumptions rather than heterogeneity.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

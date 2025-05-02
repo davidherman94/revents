@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>07. Marginal models in recurrent events • revents</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="../deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="07. Marginal models in recurrent events">
 </head>
 <body>
@@ -35,11 +34,25 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="nav-item"><a class="nav-link" href="../index.html"><span class="fa fa-home fa-lg"></span></a></li>
-<li class="active nav-item"><a class="nav-link" href="../articles/index.html">Vignettes</a></li>
+<li class="nav-item"><a class="nav-link" href="../articles/revents.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
+<li class="active nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="../articles/conditional_models.html">06. Conditional models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/count_based_models.html">05. Count-based models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/database_layout.html">04. Data layout for recurrent event analyses</a></li>
+    <li><a class="dropdown-item" href="../articles/descriptive_analyses.html">03. Descriptive analyses in recurrent event endpoints</a></li>
+    <li><a class="dropdown-item" href="../articles/event_specific_estimates.html">08. Event-specific estimates</a></li>
+    <li><a class="dropdown-item" href="../articles/marginal_models.html">07. Marginal models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="../articles/simulated_data.html">02. Simulation of clinical trial data</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="https://gitlab.par.quinten.io/d.herman/revents"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json">
+</form></li>
       </ul>
 </div>
 
@@ -103,20 +116,20 @@ subsequent events.</p>
 <span><span class="co">#&gt;     cluster = ID)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                            coef  exp(coef)   se(coef)  robust se       z</span></span>
-<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.2936479  0.7455390  0.0226855  0.0188054 -15.615</span></span>
-<span><span class="co">#&gt; AGE                   0.0015116  1.0015127  0.0009128  0.0008701   1.737</span></span>
-<span><span class="co">#&gt; SEXMale              -0.0009643  0.9990362  0.0179781  0.0161890  -0.060</span></span>
-<span><span class="co">#&gt; RACEWhite             0.0552958  1.0568532  0.0313109  0.0308863   1.790</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0007236  1.0007239  0.0004167  0.0002441   2.965</span></span>
+<span><span class="co">#&gt; DISEASE_COURSESPMS   -1.2180824  0.2957968  0.0493001  0.0718154 -16.961</span></span>
+<span><span class="co">#&gt; AGE                   0.0055684  1.0055839  0.0017495  0.0033232   1.676</span></span>
+<span><span class="co">#&gt; SEXMale              -0.0161493  0.9839804  0.0355113  0.0653509  -0.247</span></span>
+<span><span class="co">#&gt; RACEWhite             0.1793732  1.1964671  0.0608137  0.1198227   1.497</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0036762  1.0036830  0.0009369  0.0011216   3.278</span></span>
 <span><span class="co">#&gt;                            p</span></span>
 <span><span class="co">#&gt; DISEASE_COURSESPMS   &lt; 2e-16</span></span>
-<span><span class="co">#&gt; AGE                  0.08234</span></span>
-<span><span class="co">#&gt; SEXMale              0.95250</span></span>
-<span><span class="co">#&gt; RACEWhite            0.07341</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS 0.00303</span></span>
+<span><span class="co">#&gt; AGE                  0.09381</span></span>
+<span><span class="co">#&gt; SEXMale              0.80482</span></span>
+<span><span class="co">#&gt; RACEWhite            0.13440</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS 0.00105</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Likelihood ratio test=232.6  on 5 df, p=&lt; 2.2e-16</span></span>
-<span><span class="co">#&gt; n= 15756, number of events= 14501</span></span></code></pre></div>
+<span><span class="co">#&gt; Likelihood ratio test=920.7  on 5 df, p=&lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; n= 14443, number of events= 3779</span></span></code></pre></div>
 <p>However, as we can see in this study, the WLW model may underestimate
 the true effect of disease course in the risk of relapses in the SPMS
 group.</p>
@@ -140,20 +153,20 @@ simultaneously.</p>
 <span><span class="co">#&gt;     cluster = ID)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                            coef  exp(coef)   se(coef)  robust se       z</span></span>
-<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.2124480  0.8086023  0.0224830  0.0119610 -17.762</span></span>
-<span><span class="co">#&gt; AGE                   0.0011858  1.0011865  0.0009147  0.0005862   2.023</span></span>
-<span><span class="co">#&gt; SEXMale              -0.0082235  0.9918102  0.0179757  0.0106347  -0.773</span></span>
-<span><span class="co">#&gt; RACEWhite             0.0476025  1.0487537  0.0312979  0.0210217   2.264</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0003828  1.0003828  0.0004138  0.0001327   2.884</span></span>
+<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.9030446  0.4053337  0.0486950  0.0456184 -19.796</span></span>
+<span><span class="co">#&gt; AGE                   0.0042540  1.0042631  0.0017634  0.0020846   2.041</span></span>
+<span><span class="co">#&gt; SEXMale              -0.0324046  0.9681148  0.0355001  0.0398149  -0.814</span></span>
+<span><span class="co">#&gt; RACEWhite             0.1589960  1.1723332  0.0608155  0.0768990   2.068</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0020503  1.0020524  0.0009114  0.0006476   3.166</span></span>
 <span><span class="co">#&gt;                            p</span></span>
 <span><span class="co">#&gt; DISEASE_COURSESPMS   &lt; 2e-16</span></span>
-<span><span class="co">#&gt; AGE                  0.04307</span></span>
-<span><span class="co">#&gt; SEXMale              0.43936</span></span>
-<span><span class="co">#&gt; RACEWhite            0.02355</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS 0.00393</span></span>
+<span><span class="co">#&gt; AGE                  0.04128</span></span>
+<span><span class="co">#&gt; SEXMale              0.41571</span></span>
+<span><span class="co">#&gt; RACEWhite            0.03868</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS 0.00155</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Likelihood ratio test=126  on 5 df, p=&lt; 2.2e-16</span></span>
-<span><span class="co">#&gt; n= 15756, number of events= 14501</span></span></code></pre></div>
+<span><span class="co">#&gt; Likelihood ratio test=513.4  on 5 df, p=&lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; n= 14443, number of events= 3779</span></span></code></pre></div>
 </div>
 <div class="section level4">
 <h4 id="lin-wei-yang-ying-lwyy">
@@ -175,26 +188,26 @@ clinical trial designs.</p>
 <span><span class="co">#&gt;     cluster = ID)</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt;                            coef  exp(coef)   se(coef)  robust se       z</span></span>
-<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.5718587  0.5644753  0.0403615  0.0279727 -20.443</span></span>
-<span><span class="co">#&gt; AGE                   0.0028656  1.0028697  0.0015249  0.0013003   2.204</span></span>
-<span><span class="co">#&gt; SEXMale              -0.0203516  0.9798541  0.0305203  0.0248691  -0.818</span></span>
-<span><span class="co">#&gt; RACEWhite             0.1109051  1.1172889  0.0525239  0.0489264   2.267</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0011352  1.0011358  0.0007586  0.0003872   2.932</span></span>
+<span><span class="co">#&gt; DISEASE_COURSESPMS   -0.7992755  0.4496546  0.0486394  0.0391133 -20.435</span></span>
+<span><span class="co">#&gt; AGE                   0.0038309  1.0038383  0.0017635  0.0017380   2.204</span></span>
+<span><span class="co">#&gt; SEXMale              -0.0279736  0.9724140  0.0355032  0.0336431  -0.831</span></span>
+<span><span class="co">#&gt; RACEWhite             0.1463277  1.1575754  0.0608189  0.0656407   2.229</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS  0.0016896  1.0016910  0.0009095  0.0005568   3.034</span></span>
 <span><span class="co">#&gt;                            p</span></span>
 <span><span class="co">#&gt; DISEASE_COURSESPMS   &lt; 2e-16</span></span>
-<span><span class="co">#&gt; AGE                  0.02754</span></span>
-<span><span class="co">#&gt; SEXMale              0.41316</span></span>
-<span><span class="co">#&gt; RACEWhite            0.02340</span></span>
-<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS 0.00337</span></span>
+<span><span class="co">#&gt; AGE                  0.02750</span></span>
+<span><span class="co">#&gt; SEXMale              0.40570</span></span>
+<span><span class="co">#&gt; RACEWhite            0.02580</span></span>
+<span><span class="co">#&gt; TIME_SINCE_DIAGNOSIS 0.00241</span></span>
 <span><span class="co">#&gt; </span></span>
-<span><span class="co">#&gt; Likelihood ratio test=290.9  on 5 df, p=&lt; 2.2e-16</span></span>
-<span><span class="co">#&gt; n= 6347, number of events= 5092</span></span></code></pre></div>
+<span><span class="co">#&gt; Likelihood ratio test=400.1  on 5 df, p=&lt; 2.2e-16</span></span>
+<span><span class="co">#&gt; n= 5092, number of events= 3779</span></span></code></pre></div>
 <p>Even though the AG (with robust SE) and LWYY have similar numerical
 values without time dependant covariates, they model different ratios
 (AG models intensity function and the marginal rates model models rate
 of events). In this example, by partially considering the dependency
 structure, the LWYY model estimated a similar risk reduction than the AG
-model of 44% (RR: 0.57) in the SPMS group compared to RRMS.</p>
+model of 56% (RR: 0.44) in the SPMS group compared to RRMS.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -207,7 +220,7 @@ model of 44% (RR: 0.57) in the SPMS group compared to RRMS.</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>

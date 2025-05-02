@@ -6,16 +6,15 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>revents package • revents</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" sizes="any" href="favicon.ico">
+<link rel="manifest" href="site.webmanifest">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
+<link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="revents package">
 <meta name="description" content="Recurrent event models for non-terminal events">
 <meta property="og:description" content="Recurrent event models for non-terminal events">
@@ -38,11 +37,25 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
-<li class="active nav-item"><a class="nav-link" href="index.html"><span class="fa fa-home fa-lg"></span></a></li>
-<li class="nav-item"><a class="nav-link" href="articles/index.html">Vignettes</a></li>
+<li class="nav-item"><a class="nav-link" href="articles/revents.html">Get started</a></li>
+<li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/conditional_models.html">06. Conditional models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="articles/count_based_models.html">05. Count-based models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="articles/database_layout.html">04. Data layout for recurrent event analyses</a></li>
+    <li><a class="dropdown-item" href="articles/descriptive_analyses.html">03. Descriptive analyses in recurrent event endpoints</a></li>
+    <li><a class="dropdown-item" href="articles/event_specific_estimates.html">08. Event-specific estimates</a></li>
+    <li><a class="dropdown-item" href="articles/marginal_models.html">07. Marginal models in recurrent events</a></li>
+    <li><a class="dropdown-item" href="articles/simulated_data.html">02. Simulation of clinical trial data</a></li>
+  </ul>
+</li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="https://gitlab.par.quinten.io/d.herman/revents"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+</form></li>
       </ul>
 </div>
 
@@ -58,18 +71,11 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 <!-- badges: end -->
-<p>The goal of revents is make all the recurrent event functions for non-terminal events available for analysing recurrent events in chronic diseases. It is partially based on the master’s thesis: “Analysing recurrent events in Multiple Sclerosis: overview of statistical models with application in the MSOAC database”.</p>
-<div class="section level2">
-<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
-</h2>
-<p>You can install the latest version of revents with:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">'revents'</span><span class="op">)</span></span></code></pre></div>
-</div>
+<p>The goal of revents is to provide a collection of vignettes that explain key statistical models and functions for analyzing recurrent events in the context of non-terminal events, especially in chronic disease settings. It is based on the master’s thesis “Analysing recurrent events in Multiple Sclerosis: overview of statistical models with application in the MSOAC database.”</p>
 <div class="section level2">
 <h2 id="tutorial">Tutorial<a class="anchor" aria-label="anchor" href="#tutorial"></a>
 </h2>
-<p>To learn how to use the <strong>revents</strong> vignettes, refer to the vignette section. The vignette provides a step-by-step guide on how to use the tutorial to analyse recurrent events in chronic diseases.</p>
+<p>In the <strong>vignettes</strong> section you will find a step-by-step guide on how to perform the main models for analyzing recurrent events in non-terminal events in R. The simulated data used in the vignettes (Data layout 1, 2 and 3) is available in the <strong>data</strong> folder in the shared GitHub repository or it can be obtained by following the code since the simulated of clinical trial data vignette. The <strong>revents</strong> package does not need to be installed to use the vignettes.</p>
 </div>
 <div class="section level2">
 <h2 id="bibliography">Bibliography<a class="anchor" aria-label="anchor" href="#bibliography"></a>
@@ -80,6 +86,12 @@
 <p>Cook RJ, Lawless J. The Statistical Analysis of Recurrent Events [Internet]. New York, NY: Springer; 2007 [cited 2024 Feb 13]. (Statistics for Biology and Health).</p>
 <p>Kelly PJ, Lim LL. Survival analysis for recurrent event data: an application to childhood infectious diseases. Stat Med. 2000 Jan 15;19(1):13–33.</p>
 <p>Wang YC, Meyerson L, Tang YQ, Qian N. Statistical methods for the analysis of relapse data in MS clinical trials. J Neurol Sci. 2009 Oct 15;285(1):206–11.</p>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use the <strong>revents</strong> vignettes in your work, please cite the following article published in the Journal of Neurology:</p>
+<p>“Analyzing recurrent events in multiple sclerosis: a review of statistical models with application to the MSOAC database,” authored by David Herman, Julien Tanniou, Emmanuelle Leray, Chloé Pierret, and Quentin Pilard.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
@@ -101,8 +113,8 @@
 <div class="developers">
 <h2 data-toc-skip>Developers</h2>
 <ul class="list-unstyled">
-<li>David Herman <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0009-0002-8802-4914" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a> </li>
-<li>Quentin Pilard <br><small class="roles"> Author </small>  </li>
+<li>David Herman <br><small class="roles"> Author, maintainer </small> <a href="https://orcid.org/0009-0002-8802-4914" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
+<li>Quentin Pilard <br><small class="roles"> Author </small>   </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -118,7 +130,7 @@
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.2.</p>
 </div>
 
     </footer>
